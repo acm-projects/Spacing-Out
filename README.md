@@ -19,6 +19,7 @@
   <ul>
     <li><a href="#mvp-minimum-viable-product">MVP</a></li>
     <li><a href="#stretch-goals">Stretch Goals</a></li>
+    <li><a href="#milestones">Milestones</a></li>
     <li><a href="#tech-stack">Tech Stack</a></li>
     <li><a href="#dependencies">Dependencies</a></li>
     <li><a href="#github-cheat-sheet">Github Cheat Sheet</a></li>
@@ -39,18 +40,32 @@
 - User accounts
 - Parse and create flashcards from notes
 
+## Milestones
+- Frontend
+  - Create note lists/organization UI
+  - Create single note UI
+  - Create flashcard UI
+  - Include formatting tools for above (highlighting, bullet points, etc.)
+  - Maybe markdown?
+- Backend
+  - Setup and create database
+  - Store notes and flashcards
+  - With tags or groups
+  - Implement spaced repetition algorithm 
+
+
 ## Tech Stack
 - Frontend
-  - React
-  - Vue
+  - [React](https://reactjs.org/)
+  - [Vue](https://vuejs.org/)
 - Backend
-  - Express
-  - Apollo
+  - [Express](https://expressjs.com/)
+  - [Apollo](https://www.apollographql.com/)
 - Database
-  - MongoDB
-  - Firebase
+  - [MongoDB](https://www.mongodb.com/)
+  - [Firebase](https://firebase.google.com/)
 - Libraries
-  - Supermemo    
+  - [Supermemo](https://github.com/maxvien/supermemo#readme)    
 
 ## Dependencies
 - Node.js
@@ -76,5 +91,21 @@ General Use
 | git pull origin "branch" | Pull updates from a specific branch |
 
 ## Resources
+- For all
+  - [Angular vs Vue vs React](https://www.codeinwp.com/blog/angular-vs-vue-vs-react/)
+  - [JavaScript for beginners](https://learnjavascript.online/)
+- Frontend
+  - [React tutorial](https://reactjs.org/tutorial/tutorial.html)
+  - [Vue tutorial](https://www.tutorialspoint.com/vuejs/index.htm)
+  - [Next.js tutorial](https://welearncode.com/beginners-guide-nextjs/)
+- Backend
+  - [Express tutorial w/ Mongo](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs)
+  - [Express w Firebase](https://indepth.dev/posts/1084/building-an-api-with-firebase)
+  - [React Express Firebase tutorial](https://javascript.plainenglish.io/lets-create-react-app-with-firebase-auth-express-backend-and-mongodb-database-805c83e4dadd)
+  - [Firebase setup](https://firebase.google.com/docs/web/setup)
+- Integration
+  - [Next.js and Mongo (no express)](https://developer.mongodb.com/how-to/nextjs-building-modern-applications/)
+  - [MERN stack tutorial](https://www.youtube.com/watch?v=7CqJlxBYj-M)
+  - [MEVN stack tutorial](https://www.youtube.com/watch?v=vr6O-IYebXA)
 
 
