@@ -1,0 +1,33 @@
+GET http://localhost:3000
+
+###
+
+GET http://localhost:3000/flashcards/
+
+###
+
+GET http://localhost:3000/flashcards/6152be62a36b1a30ac41c34a
+
+###
+
+POST http://localhost:3000/flashcards
+Content-Type: application/json
+
+{
+    "prompt": "New prompt",
+    "answer": "New answer"
+}
+
+###
+
+DELETE http://localhost:3000/flashcards/6155132fdd2dd53a70f67ddc
+
+###
+
+PATCH http://localhost:3000/flashcards/6155132fdd2dd53a70f67ddc
+Content-Type: application/json
+
+{
+    "prompt": "Changed Prompt",
+    "answer": "Changed Answer"
+}
