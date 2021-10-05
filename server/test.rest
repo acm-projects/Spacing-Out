@@ -31,3 +31,18 @@ Content-Type: application/json
     "prompt": "Changed Prompt",
     "answer": "Changed Answer"
 }
+
+###
+
+POST http://localhost:3000/flashcards/set
+Content-Type: application/json 
+
+{
+    "name": "Example flashcard set",
+    "description": "Example description",
+    "flashcards": []
+}
+
+### 
+
+GET http://localhost:3000/flashcards/set?id=

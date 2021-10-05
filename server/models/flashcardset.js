@@ -10,6 +10,10 @@ const flashcardSetSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    /*creator {
+        type: User
+        required: true
+    },*/
     dateCreated: {
         type: Date,
         default: new Date(),

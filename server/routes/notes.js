@@ -80,3 +80,5 @@ async function getNote(req, res, next) {
     res.note = note;
     next();
 }
+
+module.exports = router;

@@ -7,9 +7,10 @@ const noteSchema = new mongoose.Schema({
     body: {
         type: String
     },
-    creator: {
-        type: String
-    },
+    /*creator: {
+        type: User,
+        required: true
+    },*/
     wordCount: {
         type: Number,
         default: 0,
