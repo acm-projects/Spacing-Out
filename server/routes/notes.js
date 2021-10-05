@@ -45,8 +45,13 @@ router.patch('/:id', getNote, async (req, res) => {
     if (req.body.body != null) {
         res.note.body = req.body.body;
     }
-    res.note.dateUpdated = req.body.dateUpdated;
-    res.note.wordCount = req.body.wordCount;
+    if (req.body.dateUpdated != null) {
+        res.note.dateUpdated = req.body.dateUpdated;
+    } 
+    if (req.body.wordCount != null) {
+        res.note.wordCount = req.body.wordCount;
+    }
+    
 
     try {
         const updatedNote= await res.note.save();
@@ -80,3 +85,5 @@ async function getNote(req, res, next) {
     res.note = note;
     next();
 }
+
+module.exports = router;

@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var flashcardsRouter = require('./routes/flashcards');
+var notesRouter = require('./routes/notes');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/flashcards', flashcardsRouter);
+app.use('/notes', notesRouter);
 
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to Database'));

@@ -31,3 +31,38 @@ Content-Type: application/json
     "prompt": "Changed Prompt",
     "answer": "Changed Answer"
 }
+
+###
+
+
+GET http://localhost:3000/notes/
+
+###
+
+POST http://localhost:3000/notes
+Content-Type: application/json
+
+{
+    "title": "The Magnificent First Note",
+    "body": "Wash the dishes",
+    "wordCount": 3
+}
+
+###
+
+GET http://localhost:3000/notes/615bb5ebfdad0148c6cf9bac
+
+###
+
+DELETE http://localhost:3000/notes/615bb5ebfdad0148c6cf9bac
+
+### 
+
+PATCH http://localhost:3000/notes/615bb81c46903c4972d93096
+Content-Type: application/json
+
+{
+    "title": "The Changed Note",
+    "body": "Never wash the dishes",
+    "wordCount": 4
+}
