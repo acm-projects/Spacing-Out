@@ -34,6 +34,7 @@ Content-Type: application/json
 
 ###
 
+<<<<<<< HEAD:server/routes/route.rest
 
 GET http://localhost:3000/notes/
 
@@ -66,3 +67,17 @@ Content-Type: application/json
     "body": "Never wash the dishes",
     "wordCount": 4
 }
+=======
+POST http://localhost:3000/flashcards/set
+Content-Type: application/json 
+
+{
+    "name": "Example flashcard set",
+    "description": "Example description",
+    "flashcards": []
+}
+
+### 
+
+GET http://localhost:3000/flashcards/set?id=
+>>>>>>> ab1f867a0bb8625a4b409707a228633edb4111ad:server/test.rest

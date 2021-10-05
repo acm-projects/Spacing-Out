@@ -7,9 +7,10 @@ const noteSchema = new mongoose.Schema({
     body: {
         type: String
     },
-    /* creator: {
-        type: String
-    }, */
+    /*creator: {
+        type: User,
+        required: true
+    },*/
     wordCount: {
         type: Number,
         default: 0,
@@ -24,7 +25,7 @@ const noteSchema = new mongoose.Schema({
         type: Date,
         default: new Date(),
         required: true
-    },
+    }
 });
 
 module.exports = mongoose.model('Note', noteSchema);
