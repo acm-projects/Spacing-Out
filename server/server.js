@@ -13,7 +13,7 @@ var flashcardsRouter = require('./routes/flashcards');
 
 var app = express();
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 // view engine setup
