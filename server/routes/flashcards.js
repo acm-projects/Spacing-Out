@@ -60,29 +60,7 @@ router.delete('/:id', getFlashcard, async (req, res) => {
     }
 });
 
-// Create new flashcard set
-router.post("/set", async (req, res) => {
-    const flashcardSet = new FlashcardSet({
-        name: req.body.name,
-        description: req.body.description,
-        dateCreated: new Date(),
-        dateUpdated: new Date(),
-        flashcards: req.body.flashcards
-    });
-
-    try {
-        const newFlashcardSet = await flashcardSet.save();
-        res.status(201).json(newFlashcardSet);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
-
-// Get one flash card set
-router.get('/set/:id', getFlashcardSet, async (req, res) => {
-    res.json(flashcardSet);
-});
-
+// Helper function get a specific flashcard by ID
 async function getFlashcard(req, res, next) {
     let flashcard;
     try {
@@ -95,21 +73,6 @@ async function getFlashcard(req, res, next) {
     }
 
     res.flashcard = flashcard;
-    next();
-}
-
-async function getFlashcardSet(req, res, next) {
-    let flashcardSet;
-    try {
-        flashcardSet = await FlashcardSet.findById(req.params.id);
-        if (flashcardSet == null) {
-            return res.status(404).json({ message: 'Cannot find flashcard set' });
-        }
-    } catch (err) {
-        return res.status(500).json({ message: err.message });
-    }
-
-    res.flashcardSet = flashcardSet;
     next();
 }
 

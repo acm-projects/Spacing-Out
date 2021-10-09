@@ -24,10 +24,10 @@ const flashcardSetSchema = new mongoose.Schema({
         default: new Date(),
         required: true
     },
-    flashcards: {
-        type: [Flashcard],
-        required: true
-    }
+    flashcards: [{
+        type: mongoose.Schema.Types.ObjectID,
+        ref: 'Flashcard'
+    }]
 });
 
 module.exports = mongoose.model('FlashcardSet', flashcardSetSchema);
