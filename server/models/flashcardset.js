@@ -26,11 +26,8 @@ const flashcardSetSchema = new mongoose.Schema({
         required: true
     },
     flashcards: [{
-        type: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Flashcard'
-        },  
-        default: []
+        type: mongoose.Schema.Types.ObjectID,
+        ref: 'Flashcard'
     }]
 });
 

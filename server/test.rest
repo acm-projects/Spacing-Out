@@ -48,7 +48,7 @@ Content-Type: application/json
 {
     "name": "Example flashcard set",
     "description": "Example description",
-    "flashcards": []
+    "flashcards": ["615523815db03276ecd0bd43"]
 }
 
 ### 
@@ -116,4 +116,17 @@ Content-Type: application/json
     {
         "_id": "6161f89842965974f790b829"
     }]
-}
+}        
+
+###        
+GET http://localhost:3000/flashcardsets/
+###
+GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
+###
+GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards
+###
+DELETE http://localhost:3000/flashcardsets/6161eb0fa081f84a4c596d59
+###
+DELETE http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards/615523815db03276ecd0bd43
+###
+PATCH http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
