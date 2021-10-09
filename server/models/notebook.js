@@ -1,8 +1,8 @@
-const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
-const Flashcard = require('./flashcard');
 
-const flashcardSetSchema = new mongoose.Schema({
+const Note = require('./note');
+
+const notebookSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -11,10 +11,6 @@ const flashcardSetSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    /*creator {
-        type: User
-        required: true
-    },*/
     dateCreated: {
         type: Date,
         default: new Date(),
@@ -25,13 +21,13 @@ const flashcardSetSchema = new mongoose.Schema({
         default: new Date(),
         required: true
     },
-    flashcards: [{
+    notes: [{
         type: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Flashcard'
+            ref: 'Note'
         },  
         default: []
     }]
 });
 
-module.exports = mongoose.model('FlashcardSet', flashcardSetSchema);
+module.exports = mongoose.model('Notebook', notebookSchema);

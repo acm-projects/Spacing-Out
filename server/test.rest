@@ -10,21 +10,27 @@ GET http://localhost:3000/flashcards/6152be62a36b1a30ac41c34a
 
 ###
 
+// Make a new flashcard
+
 POST http://localhost:3000/flashcards
 Content-Type: application/json
 
 {
-    "prompt": "New prompt",
-    "answer": "New answer"
+    "prompt": "Hello prompt",
+    "answer": "Hello answer"
 }
 
 ###
+
+// Delete a flashcard
 
 DELETE http://localhost:3000/flashcards/6155132fdd2dd53a70f67ddc
 
 ###
 
-PATCH http://localhost:3000/flashcards/6155132fdd2dd53a70f67ddc
+// Modify a flashcard
+
+PATCH http://localhost:3000/flashcards/6161f9fcaae9ef757c6dfd8c
 Content-Type: application/json
 
 {
@@ -34,40 +40,8 @@ Content-Type: application/json
 
 ###
 
-<<<<<<< HEAD:server/routes/route.rest
+// Make a flashcard set
 
-GET http://localhost:3000/notes/
-
-###
-
-POST http://localhost:3000/notes
-Content-Type: application/json
-
-{
-    "title": "The Magnificent First Note",
-    "body": "Wash the dishes",
-    "wordCount": 3
-}
-
-###
-
-GET http://localhost:3000/notes/615bb5ebfdad0148c6cf9bac
-
-###
-
-DELETE http://localhost:3000/notes/615bb5ebfdad0148c6cf9bac
-
-### 
-
-PATCH http://localhost:3000/notes/615bb81c46903c4972d93096
-Content-Type: application/json
-
-{
-    "title": "The Changed Note",
-    "body": "Never wash the dishes",
-    "wordCount": 4
-}
-=======
 POST http://localhost:3000/flashcards/set
 Content-Type: application/json 
 
@@ -80,4 +54,66 @@ Content-Type: application/json
 ### 
 
 GET http://localhost:3000/flashcards/set?id=
->>>>>>> ab1f867a0bb8625a4b409707a228633edb4111ad:server/test.rest
+
+###
+
+// Get all notes
+
+GET http://localhost:3000/notes/
+
+###
+
+// Create a note
+
+POST http://localhost:3000/notes/
+Content-Type: application/json
+
+{
+    "title": "test title",
+    "body": "test body"
+}
+
+###
+
+// Delete a note
+
+DELETE http://localhost:3000/notes/
+
+###
+
+// Patch a note
+
+PATCH http://localhost:3000/notes/6161f914fe6eca7514b2614c
+Content-Type: application/json
+
+{
+    "title": "new title",
+    "body": "changed body"
+}
+
+###
+
+// Delete note
+
+DELETE http://localhost:3000/notes/6161f914fe6eca7514b2614c
+
+###
+
+// Create a notebook
+
+POST http://localhost:3000/notes/notebook
+Content-Type: application/json
+
+{
+    "name": "the first notebook",
+    "description": "grand new notebook",
+    "notes": [{
+        "_id": "615bb5d9fdad0148c6cf9baa"
+    },
+    {
+        "_id": "615bb81c46903c4972d93096"
+    },
+    {
+        "_id": "6161f89842965974f790b829"
+    }]
+}
