@@ -38,7 +38,17 @@ router.get('/:id', getFlashcardSet, async (req, res) => {
 
 // Getting all flashcards from flashcard set
 router.get('/:id/flashcards', getFlashcardSet, async (req, res) => {
-    res.json(res.flashcardSet.flashcards);
+    let flashcardList = [];
+    try {
+        const promises = res.flashcardSet.flashcards.map(id => {
+            return Flashcard.findById(id);
+        });
+        flashcardList = await Promise.all(promises);
+    }   
+    catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+    res.json(flashcardList);
 });
 
 // Updating flashcard set
@@ -51,7 +61,7 @@ router.patch('/:id', getFlashcardSet, async (req, res) => {
     }
     if (req.body.flashcards != null) {
         req.body.flashcards.forEach( (flashcard) => {
-            if (!res.flashcardSet.flashcards.includes(flashcard._id) && flashcard != null) {
+            if (!res.flashcardSet.flashcards.includes(flashcard._id) && flashcard !== null) {
                 res.flashcardSet.flashcards.push(flashcard._id);
             }    
         });
@@ -76,12 +86,15 @@ router.delete('/:id', getFlashcardSet, async (req, res) => {
     }
 });
 
-// Deleting flashcard from flashcard set
+// Removing flashcard from flashcard set
 router.delete('/:id/flashcards/:flashcardId', getFlashcardSet, async (req, res) => {
     try {
-        // Still not working yet
-        res.flashcardSet.flashcards = res.flashcardSet.flashcards.filter(item => item !== req.params.flashcardId);
-        res.json({ message: 'Deleted flashcard '+req.params.flashcardId+' in flashcard set' });
+        res.flashcardSet.flashcards = res.flashcardSet.flashcards.filter(flashcard => {
+            return flashcard._id != req.params.flashcardId 
+        });
+        console.log(res.flashcardSet.flashcards);
+        await res.flashcardSet.save();
+        res.status(200).json({ message: 'Deleted flashcard from flashcard set'});
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

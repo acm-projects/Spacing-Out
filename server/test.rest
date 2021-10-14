@@ -42,18 +42,23 @@ Content-Type: application/json
 
 // Make a flashcard set
 
-POST http://localhost:3000/flashcards/set
+POST http://localhost:3000/flashcardsets/
 Content-Type: application/json 
 
 {
     "name": "Example flashcard set",
     "description": "Example description",
-    "flashcards": ["615523815db03276ecd0bd43"]
+    "flashcards": [{
+        "_id": "6161f26fe086797308367a83"
+    },
+    {
+        "_id": "6161f40408bff67e28d476f4"
+    }]
 }
 
 ### 
 
-GET http://localhost:3000/flashcards/set?id=
+GET http://localhost:3000/flashcardsets/6164ec7a7bf508689cc204b6/flashcards
 
 ###
 
@@ -138,6 +143,6 @@ GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards
 ###
 DELETE http://localhost:3000/flashcardsets/6161eb0fa081f84a4c596d59
 ###
-DELETE http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards/615523815db03276ecd0bd43
+DELETE http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards/615529cf7ee8372c888a99d5
 ###
 PATCH http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
