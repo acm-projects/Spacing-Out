@@ -101,7 +101,7 @@ DELETE http://localhost:3000/notes/6161f914fe6eca7514b2614c
 
 // Create a notebook
 
-POST http://localhost:3000/notes/notebook
+POST http://localhost:3000/notebooks
 Content-Type: application/json
 
 {
@@ -116,7 +116,18 @@ Content-Type: application/json
     {
         "_id": "6161f89842965974f790b829"
     }]
-}        
+}   
+
+PATCH http://localhost:3000/notebooks/6164ee2d7bd3f819a562d6be
+Content-Type: application/json
+
+{
+    "name": "the first notebook",
+    "description": "grand new notebook",
+    "notes": [{
+        "_id": "6161f72c0647ea74a0572d5a"
+    }]
+}   
 
 ###        
 GET http://localhost:3000/flashcardsets/

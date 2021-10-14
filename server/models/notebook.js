@@ -25,8 +25,7 @@ const notebookSchema = new mongoose.Schema({
         type: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Note'
-        },  
-        default: []
+        }
     }]
 });
 
