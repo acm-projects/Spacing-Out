@@ -6,7 +6,7 @@ GET http://localhost:3000/flashcards/
 
 ###
 
-GET http://localhost:3000/flashcards/6152be62a36b1a30ac41c34a
+GET http://localhost:3000/flashcards/616a617815316369d0091283
 
 ###
 
@@ -16,7 +16,7 @@ POST http://localhost:3000/flashcards
 Content-Type: application/json
 
 {
-    "prompt": "Hello prompt",
+    "prompt": "Test prompt",
     "answer": "Hello answer"
 }
 
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 // Delete a flashcard
 
-DELETE http://localhost:3000/flashcards/6155132fdd2dd53a70f67ddc
+DELETE http://localhost:3000/flashcards/615523815db03276ecd0bd43
 
 ###
 
@@ -49,10 +49,7 @@ Content-Type: application/json
     "name": "Example flashcard set",
     "description": "Example description",
     "flashcards": [{
-        "_id": "6161f26fe086797308367a83"
-    },
-    {
-        "_id": "6161f40408bff67e28d476f4"
+        "_id": "616a5ca4e7dafb2ce094033e"
     }]
 }
 
@@ -137,12 +134,86 @@ Content-Type: application/json
 ###        
 GET http://localhost:3000/flashcardsets/
 ###
-GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
+GET http://localhost:3000/flashcardsets/616a5cafe7dafb2ce0940340
 ###
-GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards
+PATCH http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
+Content-Type: application/json
+
+{
+    "flashcards": [{
+        "_id": "616a617815316369d0091283"
+    }]
+}
 ###
-DELETE http://localhost:3000/flashcardsets/6161eb0fa081f84a4c596d59
+GET http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6/flashcards
 ###
-DELETE http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards/615529cf7ee8372c888a99d5
+DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
 ###
-PATCH http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
+DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6/flashcards/
+###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ACM DEMO
+###
+
+// Make a new flashcard
+
+POST http://localhost:3000/flashcards
+Content-Type: application/json
+
+{
+    "prompt": "Hello ACM",
+    "answer": "This is the backend"
+}
+
+###
+
+// Make flashcard sets
+POST http://localhost:3000/flashcardsets/
+Content-Type: application/json 
+
+{
+    "name": "This set is for you ACM",
+    "description": "Great work!",
+    "flashcards": []
+}
+
+###
+
+GET http://localhost:3000/flashcards/616799f2a8c2710d70a19204
+
+###
+
+// Add flashcard to set
+PATCH http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d
+Content-Type: application/json 
+
+{
+    "flashcards": [{
+        "_id": "616799f2a8c2710d70a19204"
+    }]
+}
+
+###
+// Get flashcards in set
+GET http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d/flashcards
+

@@ -14,9 +14,18 @@ router.post("/", async (req, res) => {
     });
 
     try {
+
+        // Save new flashcard set
         const newFlashcardSet = await flashcardSet.save();
+
+        // Update each flashcards' parent reference
+        newFlashcardSet.flashcards.forEach( async (flashcard) => {
+            await updateFlashcardParent(flashcard._id, newFlashcardSet._id);
+        })
+
         res.status(201).json(newFlashcardSet);
-    } catch (err) {
+    } 
+    catch (err) {
         res.status(400).json({ message: err.message });
     }
 });
@@ -26,7 +35,8 @@ router.get('/', async (req, res) => {
     try {
         const flashcardSets = await FlashcardSet.find();
         res.json(flashcardSets);
-    } catch (err) {
+    } 
+    catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
@@ -53,25 +63,39 @@ router.get('/:id/flashcards', getFlashcardSet, async (req, res) => {
 
 // Updating flashcard set
 router.patch('/:id', getFlashcardSet, async (req, res) => {
+    // Update the name
     if (req.body.name != null) {
         res.flashcardSet.name = req.body.name;
     }
+    // Update the description
     if (req.body.description != null) {
         res.flashcardSet.description = req.body.description;
     }
+
+    // Append flashcards to the flashcard set
     if (req.body.flashcards != null) {
-        req.body.flashcards.forEach( (flashcard) => {
+
+        req.body.flashcards.forEach( async (flashcard) => {
+            
+            // Make sure that the flashcard is not already in the set
             if (!res.flashcardSet.flashcards.includes(flashcard._id) && flashcard !== null) {
+                // Append flashcard to the flashcard set
                 res.flashcardSet.flashcards.push(flashcard._id);
-            }    
-        });
+                
+                await updateFlashcardParent(flashcard._id, req.params.id);
+                
+            }
+        });      
     }
+
+    // Update the dateUpdated value to the current time
     res.flashcardSet.dateUpdated = new Date();
 
     try {
         const updatedFlashcardSet = await res.flashcardSet.save();
         res.json(updatedFlashcardSet);
-    } catch (err) {
+    } 
+    catch (err) {
         res.status(400).json({ message: err.message });
     }
 });
@@ -81,7 +105,20 @@ router.delete('/:id', getFlashcardSet, async (req, res) => {
     try {
         await res.flashcardSet.remove();
         res.json({ message: 'Deleted flashcard set' });
-    } catch (err) {
+    } 
+    catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+// Remove all flashcards from flashcard set
+router.delete('/:id/flashcards/', getFlashcardSet, async (req, res) => {
+    try {
+        res.flashcardSet.flashcards = [];
+        const updatedFlashcardSet = await res.flashcardSet.save();
+        res.json(updatedFlashcardSet);
+    }
+    catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
@@ -89,13 +126,32 @@ router.delete('/:id', getFlashcardSet, async (req, res) => {
 // Removing flashcard from flashcard set
 router.delete('/:id/flashcards/:flashcardId', getFlashcardSet, async (req, res) => {
     try {
-        res.flashcardSet.flashcards = res.flashcardSet.flashcards.filter(flashcard => {
-            return flashcard._id != req.params.flashcardId 
-        });
-        console.log(res.flashcardSet.flashcards);
+
+        const flashcardList = res.flashcardSet.flashcards;
+
+        if (flashcardList.includes(req.params.flashcardId)) {
+
+            for( var i = 0; i < flashcardList.length; i++ ) { 
+                
+                if (flashcardList[i] == req.params.flashcardId) { 
+                    
+                    // Remove flashcard's reference to parent set
+                    await updateFlashcardParent(flashcardList[i], null);
+                    console.log('flashcard parent reference updated');
+
+                    // Remove flashcard from the flashcard set
+                    res.flashcardSet.flashcards.splice(i, 1); 
+                }
+            }
+        }
+        else {
+            throw new Error('Flashcard is not in the flashcard set');
+        }
+
         await res.flashcardSet.save();
-        res.status(200).json({ message: 'Deleted flashcard from flashcard set'});
-    } catch (err) {
+        res.status(200).json({ message: 'Removed flashcard from flashcard set'});
+    } 
+    catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
@@ -108,12 +164,31 @@ async function getFlashcardSet(req, res, next) {
         if (flashcardSet == null) {
             return res.status(404).json({ message: 'Cannot find flashcard set' });
         }
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(500).json({ message: err.message });
     }
 
     res.flashcardSet = flashcardSet;
     next();
+}
+
+async function updateFlashcardParent(flashcardId, parentId) {
+    // Update the flashcard's reference to parent set
+    let flashcard;
+    try {
+        flashcard = await Flashcard.findById(flashcardId);
+        if (flashcard == null) {
+            return res.status(404).json({ message: 'Cannot find flashcard' });
+        }
+        
+        flashcard.parent = parentId;
+        await flashcard.save();
+
+    } 
+    catch (err) {
+        return res.status(500).json({ message: err.message });
+    } 
 }
 
 module.exports = router;

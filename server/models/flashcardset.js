@@ -5,25 +5,27 @@ const Flashcard = require('./flashcard');
 const flashcardSetSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        default: ""
     },
     description: {
         type: String,
-        required: false
+        required: false,
+        default: ""
     },
-    /*creator {
+    /*creator: {
         type: User
         required: true
     },*/
     dateCreated: {
         type: Date,
-        default: new Date(),
-        required: true
+        required: true,
+        default: new Date()
     },
     dateUpdated: {
         type: Date,
-        default: new Date(),
-        required: true
+        required: true,
+        default: new Date()
     },
     flashcards: [{
         type: mongoose.Schema.Types.ObjectID,
