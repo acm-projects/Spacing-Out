@@ -1,6 +1,4 @@
-const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
-const Flashcard = require('./flashcard');
 
 const flashcardSetSchema = new mongoose.Schema({
     name: {
