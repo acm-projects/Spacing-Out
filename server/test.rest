@@ -6,7 +6,7 @@ GET http://localhost:3000/flashcards/
 
 ###
 
-GET http://localhost:3000/flashcards/616a617815316369d0091283
+GET http://localhost:3000/flashcards/6152be62a36b1a30ac41c34a
 
 ###
 
@@ -16,7 +16,7 @@ POST http://localhost:3000/flashcards
 Content-Type: application/json
 
 {
-    "prompt": "Test prompt",
+    "prompt": "Hello prompt",
     "answer": "Hello answer"
 }
 
@@ -24,7 +24,7 @@ Content-Type: application/json
 
 // Delete a flashcard
 
-DELETE http://localhost:3000/flashcards/615523815db03276ecd0bd43
+DELETE http://localhost:3000/flashcards/6155132fdd2dd53a70f67ddc
 
 ###
 
@@ -42,26 +42,24 @@ Content-Type: application/json
 
 // Make a flashcard set
 
-POST http://localhost:3000/flashcardsets/
+POST http://localhost:3000/flashcards/set
 Content-Type: application/json 
 
 {
     "name": "Example flashcard set",
     "description": "Example description",
-    "flashcards": [{
-        "_id": "616a5ca4e7dafb2ce094033e"
-    }]
+    "flashcards": ["615523815db03276ecd0bd43"]
 }
 
 ### 
 
-GET http://localhost:3000/flashcardsets/6164ec7a7bf508689cc204b6/flashcards
+GET http://localhost:3000/flashcards/set?id=
 
 ###
 
 // Get all notes
 
-GET http://localhost:3000/notes/
+GET http://localhost:3000/notes/615bb5d9fdad0148c6cf9baa
 
 ###
 
@@ -101,6 +99,10 @@ DELETE http://localhost:3000/notes/6161f914fe6eca7514b2614c
 
 ###
 
+GET http://localhost:3000/notebooks
+
+###
+
 // Create a notebook
 
 POST http://localhost:3000/notebooks
@@ -120,100 +122,41 @@ Content-Type: application/json
     }]
 }   
 
+###
+
 PATCH http://localhost:3000/notebooks/6164ee2d7bd3f819a562d6be
 Content-Type: application/json
 
 {
-    "name": "the first notebook",
-    "description": "grand new notebook",
+    "name": "the updated notebook",
+    "description": "grand updated notebook",
     "notes": [{
         "_id": "6161f72c0647ea74a0572d5a"
     }]
 }   
 
-###        
-GET http://localhost:3000/flashcardsets/
 ###
-GET http://localhost:3000/flashcardsets/616a5cafe7dafb2ce0940340
+GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
 ###
-PATCH http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
+GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards
+###
+DELETE http://localhost:3000/flashcardsets/6161eb0fa081f84a4c596d59
+###
+DELETE http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards/615523815db03276ecd0bd43
+###
+PATCH http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
+###
+GET http://localhost:3000/users
+###
+
+POST http://localhost:3000/users/create
 Content-Type: application/json
 
 {
-    "flashcards": [{
-        "_id": "616a617815316369d0091283"
-    }]
-}
-###
-GET http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6/flashcards
-###
-DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
-###
-DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6/flashcards/
-###
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ACM DEMO
-###
-
-// Make a new flashcard
-
-POST http://localhost:3000/flashcards
-Content-Type: application/json
-
-{
-    "prompt": "Hello ACM",
-    "answer": "This is the backend"
-}
+    "username": "bob@gmail.com",
+    "password": "bobPW"
+}  
 
 ###
 
-// Make flashcard sets
-POST http://localhost:3000/flashcardsets/
-Content-Type: application/json 
-
-{
-    "name": "This set is for you ACM",
-    "description": "Great work!",
-    "flashcards": []
-}
-
-###
-
-GET http://localhost:3000/flashcards/616799f2a8c2710d70a19204
-
-###
-
-// Add flashcard to set
-PATCH http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d
-Content-Type: application/json 
-
-{
-    "flashcards": [{
-        "_id": "616799f2a8c2710d70a19204"
-    }]
-}
-
-###
-// Get flashcards in set
-GET http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d/flashcards
-
+GET http://localhost:3000/users/

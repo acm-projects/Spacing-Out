@@ -16,6 +16,12 @@ const flashcardSchema = new mongoose.Schema({
         ref: 'FlashcardSet',
         required: false,
         default: null
+    },
+    username: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+        default: null
     }
 });
 

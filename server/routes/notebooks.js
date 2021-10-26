@@ -11,7 +11,8 @@ router.post("/", async (req, res) => {
         description: req.body.description,
         dateCreated: new Date(),
         dateUpdated: new Date(),
-        notes: req.body.notes
+        notes: req.body.notes,
+        username: req.body.username
     });
 
     try {

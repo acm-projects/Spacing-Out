@@ -1,6 +1,5 @@
 const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
-const Flashcard = require('./flashcard');
 
 const flashcardSetSchema = new mongoose.Schema({
     name: {
@@ -30,7 +29,13 @@ const flashcardSetSchema = new mongoose.Schema({
     flashcards: [{
         type: mongoose.Schema.Types.ObjectID,
         ref: 'Flashcard'
-    }]
+    }],
+    username: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+        default: null
+    }
 });
 
 module.exports = mongoose.model('FlashcardSet', flashcardSetSchema);

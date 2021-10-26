@@ -7,7 +7,8 @@ const FlashcardSet = require('../models/flashcardset');
 router.post('/', async (req, res) => {
     const flashcard = new Flashcard({
         prompt: req.body.prompt,
-        answer: req.body.answer
+        answer: req.body.answer,
+        username: req.body.username
     });
 
     try {
