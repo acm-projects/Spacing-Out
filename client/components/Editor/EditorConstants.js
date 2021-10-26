@@ -2,10 +2,10 @@ import Embed from '@editorjs/embed';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Marker from '@editorjs/marker';
-import ImageTool from '@editorjs/image';
+import SimpleImage from '@editorjs/simple-image'
 import Table from '@editorjs/table';
 import Checklist from '@editorjs/checklist';
-//import LinkTool from 'editorjs/link';
+import Code from '@editorjs/code'
 
 
 const constants = {
@@ -21,9 +21,11 @@ const constants = {
   list: List,
   marker: Marker,
   header: Header,
-  image: ImageTool,
   table: Table,
   checklist: Checklist, 
+  code: Code,
+  simpleImage: SimpleImage,
+
 };
 
 export default constants;
