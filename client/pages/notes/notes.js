@@ -154,7 +154,7 @@ const headerStyles = {
                     placement="rightStart"
                     active icon={<PageIcon />}> 
                     <Dropdown.Item eventKey="4-1">
-                      <Button size="lg" onClick={handleOpen}>
+                      <Button size="lg">
                         New Note
                       </Button>
                     </Dropdown.Item>

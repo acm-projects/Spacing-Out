@@ -16,7 +16,7 @@ export default function Home() {
 
         <p className={styles.description}>
           Get started by navigating to
-          <code className={styles.code}>notes/create</code>
+          <code className={styles.code}>notes/notes</code>
         </p>
 
         <div className={styles.grid}>
