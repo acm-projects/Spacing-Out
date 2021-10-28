@@ -1,0 +1,170 @@
+GET http://localhost:3000
+
+###
+
+GET http://localhost:3000/flashcards/
+
+###
+
+GET http://localhost:3000/flashcards/6161f0ffed2c17725abded2a
+
+###
+
+// Make a new flashcard
+
+POST http://localhost:3000/flashcards
+Content-Type: application/json
+
+{
+    "front": "Testing SM2 due",
+    "back": "Test",
+    "dueDate": "2021-11-01T02:46:10.236Z"
+}
+
+###
+
+// Delete a flashcard
+
+DELETE http://localhost:3000/flashcards/617339b5eb3e1d6c1082ab5c
+
+###
+
+// Modify a flashcard
+
+PATCH http://localhost:3000/flashcards/6161f9fcaae9ef757c6dfd8c
+Content-Type: application/json
+
+{
+    "prompt": "Changed Prompt",
+    "answer": "Changed Answer"
+}
+
+###
+
+// Make a flashcard set
+
+POST http://localhost:3000/flashcardsets/
+Content-Type: application/json 
+
+{
+    "name": "Example flashcard set",
+    "description": "Example description",
+    "flashcards": [{
+        "_id": "616a5ca4e7dafb2ce094033e"
+    }]
+}
+
+### 
+
+GET http://localhost:3000/flashcardsets/6164ec7a7bf508689cc204b6/flashcards
+
+###
+
+// Get all notes
+
+GET http://localhost:3000/notes/
+
+###
+
+// Create a note
+
+POST http://localhost:3000/notes/
+Content-Type: application/json
+
+{
+    "title": "test title",
+    "body": "test body"
+}
+
+###
+
+// Delete a note
+
+DELETE http://localhost:3000/notes/
+
+###
+
+// Patch a note
+
+PATCH http://localhost:3000/notes/6161f914fe6eca7514b2614c
+Content-Type: application/json
+
+{
+    "title": "new title",
+    "body": "changed body"
+}
+
+###
+
+// Delete note
+
+DELETE http://localhost:3000/notes/6161f914fe6eca7514b2614c
+
+###
+
+// Create a notebook
+
+POST http://localhost:3000/notebooks
+Content-Type: application/json
+
+{
+    "name": "the first notebook",
+    "description": "grand new notebook",
+    "notes": [{
+        "_id": "615bb5d9fdad0148c6cf9baa"
+    },
+    {
+        "_id": "615bb81c46903c4972d93096"
+    },
+    {
+        "_id": "6161f89842965974f790b829"
+    }]
+}   
+
+PATCH http://localhost:3000/notebooks/6164ee2d7bd3f819a562d6be
+Content-Type: application/json
+
+{
+    "name": "the first notebook",
+    "description": "grand new notebook",
+    "notes": [{
+        "_id": "6161f72c0647ea74a0572d5a"
+    }]
+}   
+
+###        
+GET http://localhost:3000/flashcardsets/
+###
+GET http://localhost:3000/flashcardsets/616a5cafe7dafb2ce0940340
+###
+PATCH http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
+Content-Type: application/json
+
+{
+    "flashcards": [{
+        "_id": "616a617815316369d0091283"
+    }]
+}
+###
+GET http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6/flashcards
+###
+DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
+###
+DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6/flashcards/
+###
+
+###
+// Get flashcards in set
+GET http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d/flashcards
+
+###
+
+GET http://localhost:3000/flashcards/due
+
+###
+
+GET http://localhost:3000/flashcards/due?date=2021-11-01
+
+###
+
+PATCH http://localhost:3000/flashcards/practice/617a04df45d7676ff0c91c9b?grade=5
