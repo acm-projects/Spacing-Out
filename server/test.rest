@@ -16,8 +16,9 @@ POST http://localhost:3000/flashcards
 Content-Type: application/json
 
 {
-    "front": "Testing SM2",
-    "back": "Test"
+    "front": "Testing SM2 due",
+    "back": "Test",
+    "dueDate": "2021-11-01T02:46:10.236Z"
 }
 
 ###
@@ -162,8 +163,8 @@ GET http://localhost:3000/flashcards/due
 
 ###
 
-GET http://localhost:3000/flashcards/due?date=2021-10-26
+GET http://localhost:3000/flashcards/due?date=2021-11-01
 
 ###
 
-PATCH http://localhost:3000/flashcards/practice/617332b033c52156dc70f8b7?grade=2
+PATCH http://localhost:3000/flashcards/practice/617a04df45d7676ff0c91c9b?grade=5

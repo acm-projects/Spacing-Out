@@ -49,7 +49,8 @@ router.get('/due', async (req, res) => {
         else {
 
             let due = dayjs(req.query.date, 'YYYY-MM-DD', true);
-
+            due = due.add(1, 'day');
+            
             if (!due.isValid()) {
                 throw new Error('Date in query is not valid');
             }
@@ -99,12 +100,14 @@ router.delete('/:id', getFlashcard, async (req, res) => {
 
 // Updating the spaced-repetition algorithm after flashcard has been practiced
 router.patch('/practice/:id', getFlashcard, async (req, res) => {
-    console.log(req.query.grade);
+    
     const {nextInterval, nextRepetition, nextEfactor} = supermemo(res.flashcard, Number(req.query.grade));
-    console.log("%d %f %f", nextInterval, nextRepetition, nextEfactor);
+    
     res.flashcard.interval = nextInterval;
     res.flashcard.repetition = nextRepetition;
     res.flashcard.efactor = nextEfactor;
+    res.flashcard.dueDate = dayjs(Date.now()).add(res.flashcard.interval, 'day').toISOString();
+
     try {
         const updatedFlashcard = await res.flashcard.save();
         res.json(updatedFlashcard);
