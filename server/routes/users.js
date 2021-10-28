@@ -39,7 +39,28 @@ router.post('/create', async (req, res) => {
     }
   });
   
+  router.post('/create', async (req, res) => {
+    try {
+        if (User.find({ username: req.body.username }).length > 0) {
+            throw new Error('Username already exists');
+        }
+        bcrypt.hash(req.body.password, 10, async function (err, hash) {
+            console.log(hash)
+            const user = new User({
+                username: req.body.username,
+                password: hash
+            });
 
+            const newUser = await user.save();
+            res.status(201).json(newUser);
+            });
+        
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+  });
+
+  // Add post request for login
 
 // Getting all users
 router.get('/', async (req, res) => {

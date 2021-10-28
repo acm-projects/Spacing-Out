@@ -54,12 +54,6 @@ router.patch('/:id', getNotebook, async (req, res) => {
     if (req.body.description != null) {
         res.notebook.description = req.body.description;
     }
-    if (req.body.dateUpdated != null) {
-        res.notebook.dateUpdated = req.body.dateUpdated;
-    } 
-    if (req.body.dateCreated != null) {
-        res.notebook.dateCreated = req.body.dateCreated;
-    }
     if (req.body.notes != null) {
         req.body.notes.forEach( (note) => {
             if (!res.notebook.notes.includes(note._id) && note != null) {
