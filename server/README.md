@@ -343,6 +343,23 @@ PATCH /flashcards/:id
   __v
 }
 ```
+### PATCH (Practice) Flashcard
+##### Grade is a positive integer between 1 and 5, where 1 is the worst and 5 is the best.
+```
+PATCH /flashcards/practice/:id?grade=
+->
+{
+  front,
+  back,
+  parent,
+  interval,
+  repetition,
+  efactor,
+  dueDate,
+  _id,
+  __v
+}
+```
 ### DELETE One Flashcard
 ```
 DELETE /flashcards/:id
