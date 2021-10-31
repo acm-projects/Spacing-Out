@@ -77,13 +77,13 @@ Content-Type: application/json
 
 // Delete a note
 
-DELETE http://localhost:3000/notes/
+DELETE http://localhost:3000/notes/615bb5d9fdad0148c6cf9baa
 
 ###
 
 // Patch a note
 
-PATCH http://localhost:3000/notes/6161f914fe6eca7514b2614c
+PATCH http://localhost:3000/notes/615bb5d9fdad0148c6cf9baa
 Content-Type: application/json
 
 {
@@ -95,11 +95,15 @@ Content-Type: application/json
 
 // Delete note
 
-DELETE http://localhost:3000/notes/6161f914fe6eca7514b2614c
+DELETE http://localhost:3000/notebooks/61786e8e2046fd0d4730379c
 
 ###
 
-GET http://localhost:3000/notebooks
+GET http://localhost:3000/flashcardsets/
+
+###
+
+DELETE http://localhost:3000/flashcardsets/6161ec95cc2c667da4b05605/flashcards/615523815db03276ecd0bd43
 
 ###
 
