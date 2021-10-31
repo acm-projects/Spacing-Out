@@ -262,8 +262,8 @@ GET /flashcards/:id
 }
 ```
 ### GET All Flashcards that are Due
-Gets all flashcards that are due on or before the specified date.
-If the date is not specified, all flashcards that are due on the current date or before are returned.
+##### Gets all flashcards that are due on or before the specified date.
+##### If the date is not specified, all flashcards that are due on the current date or before are returned.
 ```
 GET /flashcards/due?date=YYYY-MM-DD
 ->
