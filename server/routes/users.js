@@ -17,31 +17,10 @@ router.post('/', async (req, res) => {
       res.status(400).json({ message: err.message });
   }
 });
-
-router.post('/create', async (req, res) => {
-    try {
-        if (User.find({ username: req.body.username }).length > 0) {
-            throw new Error('Username already exists');
-        }
-        bcrypt.hash(req.body.password, 10, async function (err, hash) {
-            console.log(hash)
-            const user = new User({
-                username: req.body.username,
-                password: hash
-            });
-
-            const newUser = await user.save();
-            res.status(201).json(newUser);
-            });
-        
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-  });
-  
   router.post('/create', async (req, res) => {
     try {
-        if (User.find({ username: req.body.username }).length > 0) {
+        const doesUserExist = await User.exists({ username: req.body.username });
+        if (doesUserExist) {
             throw new Error('Username already exists');
         }
         bcrypt.hash(req.body.password, 10, async function (err, hash) {
@@ -60,7 +39,22 @@ router.post('/create', async (req, res) => {
     }
   });
 
-  // Add post request for login
+  // login route
+  router.post("/login", async (req, res) => {
+    const body = req.body;
+    const user = await User.findOne({ username: body.username });
+    if (user) {
+      // check user password with hashed password stored in the database
+      const validPassword = await bcrypt.compare(body.password, user.password);
+      if (validPassword) {
+        res.status(200).json({ validated: true, message: "Valid password" });
+      } else {
+        res.status(400).json({ validated: false, error: "Invalid Password" });
+      }
+    } else {
+      res.status(401).json({ validated: false, error: "User does not exist" });
+    }
+  });
 
 // Getting all users
 router.get('/', async (req, res) => {
@@ -80,18 +74,22 @@ router.get('/:id', getUser, (req, res) => {
 
 // Update a username
 router.patch('/:id', getUser, async (req, res) => {
-  if (req.body.username != null) {
+  const doesUserExist = await User.exists({ username: req.body.username });
+  if (req.body.username != null && doesUserExist === false) {
       res.user.username = req.body.username;
   }
-  if (req.body.password != null) {
-    res.user.password = req.body.password;
-}
-
+  const validPassword = await bcrypt.compare(req.body.password, res.user.password);
   try {
+      if (doesUserExist) {
+        throw new Error('Username already exists');
+      }
+      if (!validPassword) {
+        throw new Error('Cannot change password');
+      }
       const updatedUser = await res.user.save();
       res.json(updatedUser);
   } catch (err) {
-      res.status(400).json({ message: err.message });
+      res.status(500).json({ message: err.message });
   }
 });
 
@@ -100,6 +98,7 @@ router.delete('/:id', getUser, async (req, res) => {
   try {
       await res.user.remove();
       res.json({ message: 'Your account has been deleted.' });
+      
   } catch (err) {
       res.status(500).json({ message: err.message });
   }

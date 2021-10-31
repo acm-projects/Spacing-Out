@@ -150,17 +150,37 @@ DELETE http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards/6
 ###
 PATCH http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
 ###
-GET http://localhost:3000/users
+GET http://localhost:5000/users
 ###
 
-POST http://localhost:3000/users/create
+POST http://localhost:5000/users/create
 Content-Type: application/json
 
 {
-    "username": "bob@gmail.com",
-    "password": "bobPW"
+    "username": "johnnyjrsr@gmail.com",
+    "password": "john"
 }  
 
 ###
 
-GET http://localhost:3000/users/
+PATCH http://localhost:5000/users/617ee307fb69045ea73727df
+Content-Type: application/json
+
+{
+    "username": "johnnyjr@gmail.com",
+    "password": "john"
+}  
+
+###
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{
+    "username": "edward@gmail.com",
+    "password": "john"
+}  
+
+
+###
+
+GET http://localhost:5000/users/
