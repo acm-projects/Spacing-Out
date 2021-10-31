@@ -11,10 +11,6 @@ const noteSchema = new mongoose.Schema({
         required: true,
         default: ""
     },
-    /*creator: {
-        type: User,
-        required: true
-    },*/
     wordCount: {
         type: Number,
         default: 0,
