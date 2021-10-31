@@ -133,20 +133,31 @@ Content-Type: application/json
 }   
 
 ###        
-GET http://localhost:3000/flashcardsets/
+GET http://localhost:5000/flashcardsets/
 ###
 GET http://localhost:3000/flashcardsets/616a5cafe7dafb2ce0940340
 ###
-PATCH http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
+POST http://localhost:5000/flashcardsets
+Content-Type: application/json
+
+{
+    "name": "Integration set",
+    "description": "Used to test integration"
+}
+###
+PATCH http://localhost:5000/flashcardsets/617ee62665f01d2b98406130
 Content-Type: application/json
 
 {
     "flashcards": [{
-        "_id": "616a617815316369d0091283"
+        "_id": "61776c29910bce3e48f8c8d6"
+    },
+    {
+        "_id": "61733982eb3e1d6c1082ab57"
     }]
 }
 ###
-GET http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6/flashcards
+GET http://localhost:5000/flashcardsets/617ee62665f01d2b98406130/flashcards
 ###
 DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
 ###
@@ -159,7 +170,7 @@ GET http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d/flashcards
 
 ###
 
-GET http://localhost:3000/flashcards/due
+GET http://localhost:5000/flashcards/due
 
 ###
 
