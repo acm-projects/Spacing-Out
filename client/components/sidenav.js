@@ -1,5 +1,6 @@
 import { Sidenav, Nav, Dropdown } from 'rsuite';
-          <Sidebar
+
+        <Sidebar
             style={{ display: 'flex', flexDirection: 'column' }}
             width={expand ? 260 : 56}
             collapsible
@@ -98,4 +99,3 @@ import { Sidenav, Nav, Dropdown } from 'rsuite';
             </Sidenav>
             <NavToggle expand={expand} onChange={() => setExpand(!expand)} />
           </Sidebar>
-  </Container>
