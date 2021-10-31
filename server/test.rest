@@ -6,7 +6,11 @@ GET http://localhost:3000/flashcards/
 
 ###
 
+<<<<<<< HEAD
 GET http://localhost:3000/flashcards/6152be62a36b1a30ac41c34a
+=======
+GET http://localhost:3000/flashcards/6161f0ffed2c17725abded2a
+>>>>>>> main
 
 ###
 
@@ -16,15 +20,25 @@ POST http://localhost:3000/flashcards
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
     "prompt": "Hello prompt",
     "answer": "Hello answer"
+=======
+    "front": "Testing SM2 due",
+    "back": "Test",
+    "dueDate": "2021-11-01T02:46:10.236Z"
+>>>>>>> main
 }
 
 ###
 
 // Delete a flashcard
 
+<<<<<<< HEAD
 DELETE http://localhost:3000/flashcards/6155132fdd2dd53a70f67ddc
+=======
+DELETE http://localhost:3000/flashcards/617339b5eb3e1d6c1082ab5c
+>>>>>>> main
 
 ###
 
@@ -150,6 +164,7 @@ DELETE http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards/6
 ###
 PATCH http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
 ###
+<<<<<<< HEAD
 GET http://localhost:5000/users
 ###
 
@@ -184,3 +199,21 @@ Content-Type: application/json
 ###
 
 GET http://localhost:5000/users/
+=======
+
+###
+// Get flashcards in set
+GET http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d/flashcards
+
+###
+
+GET http://localhost:3000/flashcards/due
+
+###
+
+GET http://localhost:3000/flashcards/due?date=2021-11-01
+
+###
+
+PATCH http://localhost:3000/flashcards/practice/617a04df45d7676ff0c91c9b?grade=5
+>>>>>>> main

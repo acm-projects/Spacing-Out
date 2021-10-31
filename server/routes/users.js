@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/user'); 
 const bcrypt = require('bcrypt');
 
+<<<<<<< HEAD
 // Create a new user
 router.post('/', async (req, res) => {
   const user = new User({
@@ -69,6 +70,11 @@ router.get('/', async (req, res) => {
 // Getting one user
 router.get('/:id', getUser, (req, res) => {
   res.json(res.user);
+=======
+/* GET users listing. */
+router.post('/create', function(req, res) {
+  res.send('respond with a resource');
+>>>>>>> main
 });
 
 
