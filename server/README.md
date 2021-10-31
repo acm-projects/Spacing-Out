@@ -1,7 +1,4 @@
 # API
-## Authentication
-Every request needs an `apiKey` parameter.
-> `?apiKey=key`
 ## Notes
 ### GET All Notes
 ```
@@ -75,7 +72,7 @@ POST /notes
   __v
 }
 ```
-### PATCH Note
+### PATCH (Update) Note
 ```
 PATCH /notes/:id
 {
@@ -182,7 +179,7 @@ POST /notebooks
   __v
 }
 ```
-### PATCH Notebook
+### PATCH (Update) Notebook
 ```
 PATCH /notes/:id
 {
@@ -232,15 +229,17 @@ DELETE /notebooks/:id/notes/:noteId
 ## Flashcards
 ### GET All Flashcards
 ```
-GET /flashcarads
+GET /flashcards
 -> 
 {
-  prompt,
-  answer,
-  parent,
-  username,
-  _id,
-  __v
+  [
+    prompt,
+    answer,
+    parent,
+    username,
+    _id,
+    __v
+  ]
 }
 ```
 ### GET One Flashcard
@@ -254,6 +253,23 @@ GET /flashcards/:id
   username,
   _id,
   __v
+}
+```
+### GET All Flashcards that are Due
+Gets all flashcards that are due on or before the specified date.
+If the date is not specified, all flashcards that are due on the current date or before are returned.
+```
+GET /flashcards/due?date=YYYY-MM-DD
+->
+{
+  [
+    prompt,
+    answer,
+    parent,
+    username,
+    _id,
+    __v
+  ]
 }
 ```
 ### POST Flashcard
@@ -289,7 +305,7 @@ POST /flashcards
   __v
 }
 ```
-### PATCH Flashcard
+### PATCH (Update) Flashcard
 ```
 PATCH /flashcards/:id
 {
