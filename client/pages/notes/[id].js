@@ -11,6 +11,8 @@ import { Navbar } from 'rsuite';
 import Sidebar from 'rsuite/Sidebar';
 import { Gear, Dashboard} from '@rsuite/icons';
 import PageIcon from '@rsuite/icons/Page';
+import {useRouter} from 'next/router';
+import axios from 'axios';
 import {
   Form,
   Button,
@@ -111,7 +113,9 @@ const headerStyles = {
         "React Suite is a set of react component libraries for enterprise system products. Built by HYPERS front-end team and UX team, mainly serving company's big data products. After three major revisions, a large number of components and rich functionality have been accumulated.",
       dateRangePicker: [new Date(), new Date()],
     };
-    
+    const router = useRouter()
+    const {id} = router.query
+
     return (
       <div className="show-fake-browser sidebar-page">
         <Container>
@@ -217,7 +221,7 @@ const headerStyles = {
   
           <Container>
             <Header>
-              <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}>Title</h2>
+              <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}>{id}</h2>
             </Header>
             <Editor
             onSave={(editorData, title, description) =>
