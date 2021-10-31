@@ -233,10 +233,13 @@ GET /flashcards
 -> 
 {
   [
-    prompt,
-    answer,
+    front,
+    back,
     parent,
-    username,
+    interval,
+    repetition,
+    efactor,
+    dueDate,
     _id,
     __v
   ]
@@ -247,26 +250,32 @@ GET /flashcards
 GET /flashcards/:id
 -> 
 {
-  prompt,
-  answer,
+  front,
+  back,
   parent,
-  username,
+  interval,
+  repetition,
+  efactor,
+  dueDate,
   _id,
   __v
 }
 ```
 ### GET All Flashcards that are Due
-Gets all flashcards that are due on or before the specified date.
-If the date is not specified, all flashcards that are due on the current date or before are returned.
+##### Gets all flashcards that are due on or before the specified date.
+##### If the date is not specified, all flashcards that are due on the current date or before are returned.
 ```
 GET /flashcards/due?date=YYYY-MM-DD
 ->
 {
   [
-    prompt,
-    answer,
+    front,
+    back,
     parent,
-    username,
+    interval,
+    repetition,
+    efactor,
+    dueDate,
     _id,
     __v
   ]
@@ -297,10 +306,13 @@ POST /flashcards
 }
 -> 
 {
-  prompt,
-  answer,
+  front,
+  back,
   parent,
-  username,
+  interval,
+  repetition,
+  efactor,
+  dueDate,
   _id,
   __v
 }
@@ -320,10 +332,13 @@ PATCH /flashcards/:id
 }
 -> 
 {
-  prompt,
-  answer,
+  front,
+  back,
   parent,
-  username,
+  interval,
+  repetition,
+  efactor,
+  dueDate,
   _id,
   __v
 }
