@@ -18,6 +18,13 @@ const flashcardSchema = new mongoose.Schema({
         required: false,
         default: null
     },
+<<<<<<< HEAD
+    username: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+        default: null
+=======
     interval: {
         type: Number,
         default: 0
@@ -33,6 +40,7 @@ const flashcardSchema = new mongoose.Schema({
     dueDate: {
         type: Date,
         default: dayjs(Date.now()).toISOString()
+>>>>>>> main
     }
 });
 

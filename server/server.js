@@ -13,6 +13,7 @@ var flashcardsRouter = require('./routes/flashcards');
 var flashcardSetsRouter = require('./routes/flashcardsets');
 var notesRouter = require('./routes/notes');
 var notebooksRouter = require('./routes/notebooks');
+var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -35,11 +36,12 @@ app.use('/flashcards', flashcardsRouter);
 app.use('/flashcardsets', flashcardSetsRouter);
 app.use('/notes', notesRouter);
 app.use('/notebooks', notebooksRouter);
+app.use('/users', usersRouter);
 
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to Database'));
 
-app.listen(3000, () => console.log('Server Started'));
+app.listen(5000, () => console.log('Server Started'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

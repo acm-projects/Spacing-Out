@@ -10,10 +10,17 @@ const supermemo = require('../supermemo');
 // Creating flashcard
 router.post('/', async (req, res) => {
     const flashcard = new Flashcard({
+<<<<<<< HEAD
+        prompt: req.body.prompt,
+        answer: req.body.answer,
+        parent: req.body.answer,
+        username: req.body.username
+=======
         front: req.body.front,
         back: req.body.back,
         parent: req.body.parent,
         dueDate: req.body.dueDate
+>>>>>>> main
     });
 
     try {
