@@ -62,7 +62,7 @@ GET http://localhost:3000/flashcardsets/6164ec7a7bf508689cc204b6/flashcards
 
 // Get all notes
 
-GET http://localhost:3000/notes/
+GET http://localhost:5000/notes/
 
 ###
 
