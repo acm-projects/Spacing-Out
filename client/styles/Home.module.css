@@ -52,12 +52,17 @@
 
 .title,
 .description {
-  text-align: center;
+  text-align: left;
 }
 
 .description {
   line-height: 1.5;
   font-size: 1.5rem;
+}
+
+.buttonGroup {
+  text-align: right;
+  font-size: 2rem;
 }
 
 .code {
