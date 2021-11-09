@@ -178,4 +178,4 @@ GET http://localhost:3000/flashcards/due?date=2021-11-01
 
 ###
 
-PATCH http://localhost:3000/flashcards/practice/617a04df45d7676ff0c91c9b?grade=5
+PATCH http://localhost:3000/flashcards/practice/617a0f8d5f3d844a04941506?grade=1
