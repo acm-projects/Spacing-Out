@@ -106,6 +106,10 @@ const SideNavbar = (props) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const [openCard, setOpenCard] = React.useState(false);
+    const handleOpenCard= () => setOpenCard(true); 
+    const handleCloseCard= () => setOpenCard(false);
+
     const [expand, setExpand] = React.useState(true);
     const [formValue, setFormValue] = React.useState({
       name: '',
@@ -144,40 +148,57 @@ return(
             <Nav.Item eventKey="1" icon={<Dashboard />} style={{textDecoration: 'none',}}>
             Dashboard
             </Nav.Item>
-            <Nav.Item eventKey="2" icon= {<WaitIcon/>} style={{textDecoration: 'none'}} >
-            Flashcards
-            </Nav.Item>
             <Dropdown
-            eventKey="3"
+            eventKey="2"
             trigger="hover"
-            title="Notebooks"
+            title="Flashcards"
             placement="rightStart"
-            icon= {<StorageIcon/>}
+            icon= {<WaitIcon/>}
             >
-            <Dropdown.Item eventKey="3-1">Chemistry</Dropdown.Item>
-            <Dropdown.Item eventKey="3-2">Math</Dropdown.Item>
-            <Dropdown.Item eventKey="3-3">Economics</Dropdown.Item>
-            <Dropdown.Item eventKey="3-4">Art</Dropdown.Item>
-            <Dropdown.Item eventKey="3-5">English</Dropdown.Item>
-            </Dropdown>
-            <Dropdown 
-            eventKey="4"
-            trigger="click"
-            title="Create New"
-            placement="rightStart"
-            icon={<PageIcon />}> 
-            <Dropdown.Item eventKey="4-1">
-                <Button size="lg">
-                New Note
+            <Dropdown.Item eventKey="2-1">History</Dropdown.Item>
+            <Dropdown.Item eventKey="2-2"> 
+                <Button size="lg" onClick={handleOpenCard}>
+                Add Flashcard
                 </Button>
-            </Dropdown.Item>
-            <Dropdown.Item eventKey="4-2"> 
-                <Button size="lg" onClick={handleOpen}>
-                New Flashcard Set
-                </Button>
-            <Modal open={open} onClose={handleClose} size="xs">
+            <Modal open={openCard} onClose={handleCloseCard} size="md">
                     <Modal.Header>
-                        <Modal.Title>Create New Flashcard</Modal.Title>
+                        <Modal.Title>Add new Flashcard </Modal.Title>
+                    </Modal.Header>
+                <Modal.Body>
+                        <Form fluid onChange={setFormValue} formValue={formValue}>
+                        <Form.Group controlId="checkbox">
+                            <Form.ControlLabel>Select Flashcard Set:</Form.ControlLabel>
+                            <Form.Control name="checkbox" accepter={CheckboxGroup} inline>
+                            <Checkbox value="History">History</Checkbox>
+                            </Form.Control>
+                          </Form.Group>
+                        <Form.Group controlId="input">
+                            <Form.ControlLabel>Term</Form.ControlLabel>
+                            <Form.Control name="input" />
+                        </Form.Group>
+                        <Form.Group controlId="textarea-9">
+                            <Form.ControlLabel>Definition</Form.ControlLabel>
+                            <Form.Control rows={5} name="textarea" accepter={Textarea} />
+                        </Form.Group>
+                        </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                        <Button onClick={handleCloseCard} appearance="primary">
+                        Confirm
+                        </Button>
+                        <Button onClick={handleCloseCard} appearance="subtle">
+                        Cancel
+                        </Button>
+                </Modal.Footer>
+              </Modal>
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="2-3">
+            <Button size ="lg" onClick={handleOpen}>
+                  New Flashcard Set
+                </Button>
+                <Modal open={open} onClose={handleClose} size="md">
+                    <Modal.Header>
+                        <Modal.Title>Create New Set</Modal.Title>
                     </Modal.Header>
                 <Modal.Body>
                         <Form fluid onChange={setFormValue} formValue={formValue}>
@@ -200,14 +221,66 @@ return(
                         <Form.ControlLabel>Select Spaced Repition Start to End Date:</Form.ControlLabel>
                         <Form.Control name="dateRangePicker" accepter={DateRangePicker} />
                         </Form.Group>
-
-                        <Form.Group controlId="input">
-                            <Form.ControlLabel>Term</Form.ControlLabel>
-                            <Form.Control name="input" />
+                        </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                        <Button onClick={handleClose} appearance="primary">
+                        Confirm
+                        </Button>
+                        <Button onClick={handleClose} appearance="subtle">
+                        Cancel
+                        </Button>
+                </Modal.Footer>
+                </Modal>
+            </Dropdown.Item>
+            </Dropdown>
+            <Dropdown
+            eventKey="3"
+            trigger="hover"
+            title="Notebooks"
+            placement="rightStart"
+            icon= {<StorageIcon/>}
+            >
+            
+            <Dropdown.Item eventKey="3-1">Chemistry</Dropdown.Item>
+            <Dropdown.Item eventKey="3-2">Math</Dropdown.Item>
+            <Dropdown.Item eventKey="3-3">Economics</Dropdown.Item>
+            <Dropdown.Item eventKey="3-4">Art</Dropdown.Item>
+            <Dropdown.Item eventKey="3-5">English</Dropdown.Item>
+            </Dropdown>
+            {/* <Nav.Item eventKey="4">
+                <Button size="lg">
+                New Note
+                </Button>
+            </Nav.Item> */}
+            {/* <Nav.Item eventKey="5">
+                {/* <Button size ="lg" onClick={handleOpen}>
+                  New Flashcard Set
+                </Button>
+                <Modal open={open} onClose={handleClose} size="md">
+                    <Modal.Header>
+                        <Modal.Title>Create New Set</Modal.Title>
+                    </Modal.Header>
+                <Modal.Body>
+                        <Form fluid onChange={setFormValue} formValue={formValue}>
+                        <Form.Group controlId="name-9">
+                            <Form.ControlLabel>Title of Set</Form.ControlLabel>
+                            <Form.Control name="name" />
+                            <Form.HelpText>Required</Form.HelpText>
                         </Form.Group>
-                        <Form.Group controlId="textarea-9">
-                            <Form.ControlLabel>Definition</Form.ControlLabel>
-                            <Form.Control rows={5} name="textarea" accepter={Textarea} />
+                        <Form.Group controlId="checkbox">
+                            <Form.ControlLabel>Select Notebook:</Form.ControlLabel>
+                            <Form.Control name="checkbox" accepter={CheckboxGroup} inline>
+                            <Checkbox value="Chemistry">Chemistry</Checkbox>
+                            <Checkbox value="Math">Math</Checkbox>
+                            <Checkbox value="Economics">Economics</Checkbox>
+                            <Checkbox value="Art">Art</Checkbox>
+                            <Checkbox value="English">English</Checkbox>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group controlId="dateRangePicker">
+                        <Form.ControlLabel>Select Spaced Repition Start to End Date:</Form.ControlLabel>
+                        <Form.Control name="dateRangePicker" accepter={DateRangePicker} />
                         </Form.Group>
                         </Form>
                 </Modal.Body>
@@ -219,9 +292,8 @@ return(
                         Cancel
                         </Button>
                 </Modal.Footer>
-        </Modal>
-    </Dropdown.Item>
-    </Dropdown>
+                </Modal>}
+                </Nav.Item> */}
     </Nav>
     </Sidenav.Body>
     </Sidenav>
