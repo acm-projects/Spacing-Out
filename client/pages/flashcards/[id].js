@@ -23,11 +23,11 @@ const Page = () => {
         },
         {
           front: {
-            text: "wanting to sleep and eat ice cream all the time",
-            image: "",
+            text: "A 1215 document that limited the king's ability to tax English nobles and that guaranteed due process and a right to trial",
+            image: "https://www.gannett-cdn.com/presto/2020/06/12/PCIN/f7da5daa-55ce-4c51-aeaa-92ca3afa7928-engraving-King-John-Magna-Carta-Runnymede-England-June-15-1215.jpg",
           },
           back: {
-            text: "Depression",
+            text: "Magna Carta",
           }
         }
       ];
