@@ -6,11 +6,9 @@ const noteSchema = new mongoose.Schema({
         required: true,
         default: ""
     },
-    body: {
-        type: String,
-        required: true,
-        default: ""
-    },
+    time: Number,
+    blocks: [],
+    version: String,
     wordCount: {
         type: Number,
         default: 0,
