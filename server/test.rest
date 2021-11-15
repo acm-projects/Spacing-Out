@@ -170,7 +170,43 @@ GET http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d/flashcards
 
 ###
 
+<<<<<<< HEAD
 GET http://localhost:5000/flashcards/due
+=======
+
+
+
+
+
+
+
+
+// ACM DEMO
+###
+POST http://localhost:3000/flashcards
+Content-Type: application/json
+
+{
+    "front": "Hi ACM!",
+    "back": "Testing the spaced-repetition algorithm"
+}
+
+###
+
+POST http://localhost:3000/flashcards
+Content-Type: application/json
+
+{
+    "front": "Hi ACM! Later due date",
+    "back": "Testing the spaced-repetition algorithm",
+    "dueDate": "2021-11-01T02:46:10.236Z"
+}
+
+
+###
+
+GET http://localhost:3000/flashcards/due
+>>>>>>> 6ce2dee (Updated Readme)
 
 ###
 
@@ -178,4 +214,4 @@ GET http://localhost:3000/flashcards/due?date=2021-11-01
 
 ###
 
-PATCH http://localhost:3000/flashcards/practice/617a04df45d7676ff0c91c9b?grade=5
+PATCH http://localhost:3000/flashcards/practice/617a0f8d5f3d844a04941506?grade=1

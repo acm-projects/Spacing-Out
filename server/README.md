@@ -233,10 +233,13 @@ GET /flashcards
 -> 
 {
   [
-    prompt,
-    answer,
+    front,
+    back,
     parent,
-    username,
+    interval,
+    repetition,
+    efactor,
+    dueDate,
     _id,
     __v
   ]
@@ -247,10 +250,13 @@ GET /flashcards
 GET /flashcards/:id
 -> 
 {
-  prompt,
-  answer,
+  front,
+  back,
   parent,
-  username,
+  interval,
+  repetition,
+  efactor,
+  dueDate,
   _id,
   __v
 }
@@ -263,10 +269,13 @@ GET /flashcards/due?date=YYYY-MM-DD
 ->
 {
   [
-    prompt,
-    answer,
+    front,
+    back,
     parent,
-    username,
+    interval,
+    repetition,
+    efactor,
+    dueDate,
     _id,
     __v
   ]
@@ -297,10 +306,13 @@ POST /flashcards
 }
 -> 
 {
-  prompt,
-  answer,
+  front,
+  back,
   parent,
-  username,
+  interval,
+  repetition,
+  efactor,
+  dueDate,
   _id,
   __v
 }
@@ -320,10 +332,13 @@ PATCH /flashcards/:id
 }
 -> 
 {
-  prompt,
-  answer,
+  front,
+  back,
   parent,
-  username,
+  interval,
+  repetition,
+  efactor,
+  dueDate,
   _id,
   __v
 }
