@@ -6,11 +6,7 @@ GET http://localhost:3000/flashcards/
 
 ###
 
-<<<<<<< HEAD
 GET http://localhost:3000/flashcards/6161f0ffed2c17725abded2a
-=======
-GET http://localhost:3000/flashcards/6152be62a36b1a30ac41c34a
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))
 
 ###
 
@@ -20,25 +16,16 @@ POST http://localhost:3000/flashcards
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
     "front": "Testing SM2 due",
     "back": "Test",
     "dueDate": "2021-11-01T02:46:10.236Z"
-=======
-    "prompt": "Hello prompt",
-    "answer": "Hello answer"
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))
 }
 
 ###
 
 // Delete a flashcard
 
-<<<<<<< HEAD
 DELETE http://localhost:3000/flashcards/617339b5eb3e1d6c1082ab5c
-=======
-DELETE http://localhost:3000/flashcards/6155132fdd2dd53a70f67ddc
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))
 
 ###
 
@@ -56,28 +43,26 @@ Content-Type: application/json
 
 // Make a flashcard set
 
-POST http://localhost:3000/flashcards/set
+POST http://localhost:3000/flashcardsets/
 Content-Type: application/json 
 
 {
     "name": "Example flashcard set",
     "description": "Example description",
-    "flashcards": ["615523815db03276ecd0bd43"]
+    "flashcards": [{
+        "_id": "616a5ca4e7dafb2ce094033e"
+    }]
 }
 
 ### 
 
-GET http://localhost:3000/flashcards/set?id=
+GET http://localhost:3000/flashcardsets/6164ec7a7bf508689cc204b6/flashcards
 
 ###
 
 // Get all notes
 
-<<<<<<< HEAD
 GET http://localhost:5000/notes/
-=======
-GET http://localhost:3000/notes/615bb5d9fdad0148c6cf9baa
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))
 
 ###
 
@@ -95,13 +80,13 @@ Content-Type: application/json
 
 // Delete a note
 
-DELETE http://localhost:3000/notes/615bb5d9fdad0148c6cf9baa
+DELETE http://localhost:3000/notes/
 
 ###
 
 // Patch a note
 
-PATCH http://localhost:3000/notes/615bb5d9fdad0148c6cf9baa
+PATCH http://localhost:3000/notes/6161f914fe6eca7514b2614c
 Content-Type: application/json
 
 {
@@ -113,15 +98,7 @@ Content-Type: application/json
 
 // Delete note
 
-DELETE http://localhost:3000/notebooks/61786e8e2046fd0d4730379c
-
-###
-
-GET http://localhost:3000/flashcardsets/
-
-###
-
-DELETE http://localhost:3000/flashcardsets/6161ec95cc2c667da4b05605/flashcards/615523815db03276ecd0bd43
+DELETE http://localhost:3000/notes/6161f914fe6eca7514b2614c
 
 ###
 
@@ -144,28 +121,22 @@ Content-Type: application/json
     }]
 }   
 
-###
-
 PATCH http://localhost:3000/notebooks/6164ee2d7bd3f819a562d6be
 Content-Type: application/json
 
 {
-    "name": "the updated notebook",
-    "description": "grand updated notebook",
+    "name": "the first notebook",
+    "description": "grand new notebook",
     "notes": [{
         "_id": "6161f72c0647ea74a0572d5a"
     }]
 }   
 
-<<<<<<< HEAD
 ###        
 GET http://localhost:5000/flashcardsets/
-=======
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))
 ###
-GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
+GET http://localhost:3000/flashcardsets/616a5cafe7dafb2ce0940340
 ###
-<<<<<<< HEAD
 POST http://localhost:5000/flashcardsets
 Content-Type: application/json
 
@@ -187,17 +158,11 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:5000/flashcardsets/617ee62665f01d2b98406130/flashcards
-=======
-GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards
 ###
-DELETE http://localhost:3000/flashcardsets/6161eb0fa081f84a4c596d59
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))
+DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
 ###
-DELETE http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards/615523815db03276ecd0bd43
+DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6/flashcards/
 ###
-PATCH http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
-###
-<<<<<<< HEAD
 
 ###
 // Get flashcards in set
@@ -205,9 +170,6 @@ GET http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d/flashcards
 
 ###
 
-<<<<<<< HEAD
-GET http://localhost:5000/flashcards/due
-=======
 
 
 
@@ -241,7 +203,6 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/flashcards/due
->>>>>>> 6ce2dee (Updated Readme)
 
 ###
 
@@ -250,19 +211,3 @@ GET http://localhost:3000/flashcards/due?date=2021-11-01
 ###
 
 PATCH http://localhost:3000/flashcards/practice/617a0f8d5f3d844a04941506?grade=1
-=======
-GET http://localhost:3000/users
-###
-
-POST http://localhost:3000/users/create
-Content-Type: application/json
-
-{
-    "username": "bob@gmail.com",
-    "password": "bobPW"
-}  
-
-###
-
-GET http://localhost:3000/users/
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))

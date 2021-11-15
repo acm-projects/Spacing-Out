@@ -74,18 +74,22 @@ router.get('/:id', getUser, (req, res) => {
 
 // Update a username
 router.patch('/:id', getUser, async (req, res) => {
-  if (req.body.username != null) {
+  const doesUserExist = await User.exists({ username: req.body.username });
+  if (req.body.username != null && doesUserExist === false) {
       res.user.username = req.body.username;
   }
-  if (req.body.password != null) {
-    res.user.password = req.body.password;
-}
-
+  const validPassword = await bcrypt.compare(req.body.password, res.user.password);
   try {
+      if (doesUserExist) {
+        throw new Error('Username already exists');
+      }
+      if (!validPassword) {
+        throw new Error('Cannot change password');
+      }
       const updatedUser = await res.user.save();
       res.json(updatedUser);
   } catch (err) {
-      res.status(400).json({ message: err.message });
+      res.status(500).json({ message: err.message });
   }
 });
 
@@ -94,6 +98,7 @@ router.delete('/:id', getUser, async (req, res) => {
   try {
       await res.user.remove();
       res.json({ message: 'Your account has been deleted.' });
+      
   } catch (err) {
       res.status(500).json({ message: err.message });
   }
