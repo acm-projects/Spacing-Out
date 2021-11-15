@@ -17,17 +17,10 @@ router.post('/', async (req, res) => {
       res.status(400).json({ message: err.message });
   }
 });
-<<<<<<< HEAD
   router.post('/create', async (req, res) => {
     try {
         const doesUserExist = await User.exists({ username: req.body.username });
         if (doesUserExist) {
-=======
-
-router.post('/create', async (req, res) => {
-    try {
-        if (User.find({ username: req.body.username }).length > 0) {
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))
             throw new Error('Username already exists');
         }
         bcrypt.hash(req.body.password, 10, async function (err, hash) {
@@ -45,7 +38,6 @@ router.post('/create', async (req, res) => {
         res.status(400).json({ message: err.message });
     }
   });
-<<<<<<< HEAD
 
   // login route
   router.post("/login", async (req, res) => {
@@ -63,10 +55,6 @@ router.post('/create', async (req, res) => {
       res.status(401).json({ validated: false, error: "User does not exist" });
     }
   });
-=======
-  
-
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))
 
 // Getting all users
 router.get('/', async (req, res) => {

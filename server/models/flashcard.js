@@ -18,7 +18,6 @@ const flashcardSchema = new mongoose.Schema({
         required: false,
         default: null
     },
-<<<<<<< HEAD
     interval: {
         type: Number,
         default: 0
@@ -34,13 +33,6 @@ const flashcardSchema = new mongoose.Schema({
     dueDate: {
         type: Date,
         default: dayjs(Date.now()).toISOString()
-=======
-    username: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: false,
-        default: null
->>>>>>> 5b92fe9 (new user branch w/ encryption (no de-encryption))
     }
 });
 
