@@ -16,6 +16,9 @@ const Page = () => {
   let [cardData, setCardData] = useState([]);
 
   useEffect(() => {
+    if(!id){
+      return;
+    }
     axios.get(`http://localhost:5000/flashcardsets/${id}/flashcards`)
     .then( (response) => {
        let tempCardData = response.data.map( (flashcard) => {
@@ -30,6 +33,7 @@ const Page = () => {
             }
           );
         });
+        console.log(tempCardData);
         setCardData(tempCardData);
     })
     .catch( (error) => {

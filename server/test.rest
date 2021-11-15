@@ -161,6 +161,13 @@ Content-Type: application/json
     "description": "Used to test integration"
 }
 ###
+
+GET http://localhost:5000/flashcardsets
+
+###
+
+GET http://localhost:5000/flashcards/61776c29910bce3e48f8c8d6
+###
 PATCH http://localhost:5000/flashcardsets/617ee62665f01d2b98406130
 Content-Type: application/json
 
