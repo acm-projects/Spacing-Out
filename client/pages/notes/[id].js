@@ -12,6 +12,13 @@ import axios from 'axios';
     const router = useRouter()
     const {id} = router.query
     useEffect(() => {
+      if (id == "new") {
+        axios.post('http://localhost:5000/notebooks', {name: "new note", description: "new"})
+        .then(function(response) {
+          console.log(response);
+        })
+      }
+      else {
       axios.get(`http://localhost:5000/notes/${id}`)
         .then(function (response) {
           // handle success
@@ -24,6 +31,7 @@ import axios from 'axios';
         .then(function () {
           // always executed
         });
+      }
 
     });
 

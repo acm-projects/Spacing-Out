@@ -1,13 +1,13 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from 'next/head';
+import Image from 'next/image';
 import React from 'react';
 import Form from 'rsuite/Form';
 import Button from 'rsuite/Button';
-//mport ButtonToolbar from 'rsuite/ButtonToolbar';
-import { Navbar, Nav, Dropdown, Content, Sidebar, Grid, Row, Col, Modal, Footer } from 'rsuite';
-import { Container } from 'rsuite';
+import { Navbar, Nav, Dropdown, Row, Modal } from 'rsuite';
+import { Container} from 'rsuite';
+import Link from 'next/Link';
 import 'rsuite/dist/rsuite.min.css';
-import Home from '@rsuite/icons/Home';
+
 
 
   export default function LandingPage() {
@@ -18,52 +18,61 @@ import Home from '@rsuite/icons/Home';
       setOpen(true);
     };
     const handleClose = () => setOpen(false);
+
+    const MyLink = React.forwardRef((props, ref) => {
+      const { href, as, ...rest } = props;
+      return (
+        <Link href={href} as={as}>
+          <a ref={ref} {...rest} />
+        </Link>
+      );
+    });
+
     const axios = require('axios');
-    //axios.post('/backend something', {Name: 'name', Email: 'email'} )
-      
+    
     return (
     
     <Container>
-
+ 
       <Navbar style={{backgroundColor:'#7660FF', appearance:'subtle', textDecoration: 'none', 
               color:'black', fontSize:'1.15rem', height:'4rem'}}>
-          <Navbar.Brand style={{textDecoration: 'none', color:'white', fontWeight: 'heavy'}} icon={<Home></Home>}>
-            HOME
+          <Navbar.Brand style={{textDecoration: 'none', color:'white', fontWeight: 'heavy'}}>
+            DASHBOARD
           </Navbar.Brand>
           <Nav pullRight>
-            <Nav.Item style={{textDecoration: 'none', padding: 'none', color:'white'}}>
+            <Nav.Item style={{textDecoration: 'none', padding: 'none', color:'white'}}
+            as={MyLink} href="/notes/new">
               Notes
             </Nav.Item>
-            <Nav.Item style={{textDecoration: 'none', color:'white'}}>Flashcards</Nav.Item>
-            <Nav.Item style={{textDecoration: 'none', color:'black'}}> 
-              <Button size="med" onClick={() => handleOpen('xs')}>
-                Account
-              </Button>
-            </Nav.Item>
+            <Nav.Item style={{textDecoration: 'none', color:'white'}}
+            as={MyLink} href="/flashcards/new">
+              Flashcards
+              </Nav.Item>
+            <Dropdown title="Login" style={{textAlign: 'left', alignItems:'left', textDecoration: 'none', color:'white', fontSize:'2rem', height:'4rem', width: '7rem', fontFamily: 'sans-serif'}}> 
+              <Dropdown.Item style={{alignItems: 'center', textAlign: 'center'}}>
+                <Button color='#7660FF' onClick={() => handleOpen('xs')}>Login</Button>
+              </Dropdown.Item>
+              <Dropdown.Item> 
+                <Button onClick={() => handleOpen('xs')} >New User</Button>
+              </Dropdown.Item>
+          </Dropdown>
             <Modal size={size} open={open} onClose={handleClose}>
-        <Modal.Header>
-          <Modal.Title>Login</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-            <Form>
-                <Form.Group controlId="name">
-                  <Form.ControlLabel>Name</Form.ControlLabel>
-                  <Form.Control name="name" type="name" />
-                </Form.Group>
-                <Form.Group controlId="email">
-                  <Form.ControlLabel>Email</Form.ControlLabel>
-                  <Form.Control name="email" type="email" />
-                </Form.Group>
-                <Form.Group controlId="password">
-                  <Form.ControlLabel>Password</Form.ControlLabel>
-                  <Form.Control name="password" type="password" autoComplete="off" />
-                </Form.Group>
-              </Form>
-            </Modal.Body>
+              <Modal.Header>
+                  <Modal.Title>Login/New User</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group controlId="username">
+                    <Form.ControlLabel>Username</Form.ControlLabel>
+                    <Form.Control name="username" type="username" />
+                  </Form.Group>
+                  <Form.Group controlId="password">
+                    <Form.ControlLabel>Password</Form.ControlLabel>
+                    <Form.Control name="password" type="password" autoComplete="off" />
+                  </Form.Group>
+                </Form>
+              </Modal.Body>
             <Modal.Footer>
-              <Button>
-                New User?
-              </Button>
 
               <Button onClick={handleClose} appearance="subtle">
                 Cancel
@@ -97,8 +106,9 @@ import Home from '@rsuite/icons/Home';
 
         </Row>
 
-        <Row >
-        <Image styles={{alignItems: 'center'}} src="/images/landingpicturenew.jpg" alt="Landing Picture"
+        <Row style={{textAlign: 'center'}}>
+        <Image src="/landingpicturenew.png" 
+          alt="Landing Picture"
           width = "600"
           height = "400" />
         </Row>
