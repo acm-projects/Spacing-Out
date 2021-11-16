@@ -10,7 +10,8 @@ router.post("/", async (req, res) => {
         description: req.body.description,
         dateCreated: new Date(),
         dateUpdated: new Date(),
-        flashcards: req.body.flashcards
+        flashcards: req.body.flashcards,
+        username: req.body.username
     });
 
     try {

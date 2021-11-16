@@ -28,7 +28,13 @@ const flashcardSetSchema = new mongoose.Schema({
     flashcards: [{
         type: mongoose.Schema.Types.ObjectID,
         ref: 'Flashcard'
-    }]
+    }],
+    username: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+        default: null
+    }
 });
 
 module.exports = mongoose.model('FlashcardSet', flashcardSetSchema);

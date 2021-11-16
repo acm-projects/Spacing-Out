@@ -165,7 +165,7 @@ return(
                 </Button>
             <Modal open={open} onClose={handleClose} size="lg">
                     <Modal.Header>
-                        <Modal.Title>Create New Flashcard</Modal.Title>
+                        <Modal.Title>Create New Set</Modal.Title>
                     </Modal.Header>
                 <Modal.Body>
                         <Form fluid>

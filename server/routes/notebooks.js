@@ -11,7 +11,8 @@ router.post("/", async (req, res) => {
         description: req.body.description,
         dateCreated: new Date(),
         dateUpdated: new Date(),
-        notes: req.body.notes
+        notes: req.body.notes,
+        username: req.body.username
     });
 
     try {
@@ -52,12 +53,6 @@ router.patch('/:id', getNotebook, async (req, res) => {
     }
     if (req.body.description != null) {
         res.notebook.description = req.body.description;
-    }
-    if (req.body.dateUpdated != null) {
-        res.notebook.dateUpdated = req.body.dateUpdated;
-    } 
-    if (req.body.dateCreated != null) {
-        res.notebook.dateCreated = req.body.dateCreated;
     }
     if (req.body.notes != null) {
         req.body.notes.forEach( (note) => {

@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import 'rsuite/dist/rsuite.min.css';
-import { FlashcardComponent } from 'react-flashcard'
 import SideNavbar from '../../components/SideNavbar';
 import Container from 'rsuite/Container';
 import Header from 'rsuite/Header';
-import {useRouter} from 'next/router';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { FlashcardComponent } from 'react-flashcard';
 import ButtonGroup from 'rsuite/ButtonGroup';
 import Button from 'rsuite/Button';
 import PlusIcon from '@rsuite/icons/Plus';
@@ -14,28 +15,28 @@ import {
 } from 'rsuite';
 
 const Page = () => {
-  const router = useRouter()
-  const {id} = router.query
-    const cardData = [
-        {
-          front: {
-            text: "living outside, often in a tent",
-            image: "",
-          },
-          back: {
-            text: "Camping",
-          }
-        },
-        {
-          front: {
-            text: "wanting to sleep and eat ice cream all the time",
-            image: "",
-          },
-          back: {
-            text: "Depression",
-          }
-        }
-      ];
+  // const router = useRouter()
+  // // const {id} = router.query
+  // //   const cardData = [
+  // //       {
+  // //         front: {
+  // //           text: "living outside, often in a tent",
+  // //           image: "",
+  // //         },
+  // //         back: {
+  // //           text: "Camping",
+  // //         }
+  // //       },
+  // //       {
+  // //         front: {
+  // //           text: "wanting to sleep and eat ice cream all the time",
+  // //           image: "",
+  // //         },
+  // //         back: {
+  // //           text: "Depression",
+  // //         }
+  // //       }
+  // //     ];
       const [open, setOpen] = React.useState(false);
       const handleOpen = () => setOpen(true);
       const handleClose = () => setOpen(false);
@@ -52,6 +53,39 @@ const Page = () => {
       };
 
   const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
+  const router = useRouter();
+  const { id } = router.query;
+  
+  let [cardData, setCardData] = useState([]);
+
+  useEffect(() => {
+    if(!id){
+      return;
+    }
+    axios.get(`http://localhost:5000/flashcardsets/${id}/flashcards`)
+    .then( (response) => {
+       let tempCardData = response.data.map( (flashcard) => {
+          return (
+            {
+              front: {
+                text: flashcard.front
+              },
+              back: {
+                text: flashcard.back
+              }
+            }
+          );
+        });
+        console.log(tempCardData);
+        setCardData(tempCardData);
+    })
+    .catch( (error) => {
+      console.log(error);
+    })
+    .then( () => {
+
+    });
+  }, [id]);
     return (
     <div className="show-fake-browser sidebar-page">
     <Container>
