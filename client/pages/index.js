@@ -104,7 +104,7 @@ import axios from "axios";
         <Row>
 
           <h3 style={{textAlign:'center', alignItems:'center', marginTop:'3rem', fontWeight:'lighter' }}>
-             A spaced repitition and note taking software for all your studying needs.
+             A spaced-repetition and note-taking software for all your studying needs.
           </h3>
 
         </Row>
