@@ -7,9 +7,7 @@ import { Navbar, Nav, Dropdown, Row, Modal } from 'rsuite';
 import { Container} from 'rsuite';
 import Link from 'next/Link';
 import 'rsuite/dist/rsuite.min.css';
-import {useRouter} from 'next/router';
-import axios from 'axios';
-
+import styles from '../styles/Home.module.css'
 
 
   export default function LandingPage() {
@@ -36,7 +34,6 @@ import axios from 'axios';
     }); 
 
     return (
-    
     <Container>
  
       <Navbar style={{backgroundColor:'#7660FF', appearance:'subtle', textDecoration: 'none', 
@@ -90,7 +87,7 @@ import axios from 'axios';
           </Modal>
         </Nav>
       </Navbar>
-    
+      
       <Head style={{color: "black"}}>
         <title>Spacing Out</title>
       </Head>
