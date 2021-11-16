@@ -1,11 +1,10 @@
 .container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh; 
 }
 
 .main {
@@ -48,11 +47,12 @@
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
+  align-items: left;
 }
 
 .title,
 .description {
-  text-align: center;
+  text-align: left;
 }
 
 .description {
@@ -60,6 +60,14 @@
   font-size: 1.5rem;
 }
 
+.buttonGroup {
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+.navbar {
+  font-size: 1rem;
+}
 .code {
   background: #fafafa;
   border-radius: 5px;

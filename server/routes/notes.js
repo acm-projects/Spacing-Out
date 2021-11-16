@@ -50,6 +50,9 @@ router.patch('/:id', getNote, async (req, res) => {
     if (req.body.version != null) {
         res.note.version = req.body.version;
     }
+    if (req.body.wordCount != null) {
+        res.note.wordCount = req.body.wordCount;
+    }
     res.note.dateUpdated = new Date();
     
     try {

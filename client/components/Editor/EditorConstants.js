@@ -1,11 +1,11 @@
+//import EditorJS from '@editorjs/';
 import Embed from '@editorjs/embed';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Marker from '@editorjs/marker';
-import SimpleImage from '@editorjs/simple-image'
 import Table from '@editorjs/table';
 import Checklist from '@editorjs/checklist';
-import Code from '@editorjs/code'
+//import Code from '@editorjs/code';
 
 
 const constants = {
@@ -23,8 +23,7 @@ const constants = {
   header: Header,
   table: Table,
   checklist: Checklist, 
-  code: Code,
-  simpleImage: SimpleImage,
+  //code: Code,
 
 };
 
