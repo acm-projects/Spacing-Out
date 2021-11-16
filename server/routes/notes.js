@@ -57,7 +57,6 @@ router.patch('/:id', getNote, async (req, res) => {
     
     try {
         const updatedNote = await res.note.save();
-        console.log(updatedNote);
         res.json(updatedNote);
     } catch (err) {
         res.status(400).json({ message: err.message });

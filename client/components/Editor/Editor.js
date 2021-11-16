@@ -22,7 +22,7 @@ const Editor = (props) => {
       //   throw new Error('Note cannot be empty. Please enter some data');
       
       await axios
-        .patch(`http://localhost:5000/notes/${props.id}`, data)
+        .patch(`http://localhost:5000/notes/${noteData.data._id}`, data)
         .then(function (response) {
           // handle success
           console.log(response);
@@ -58,14 +58,27 @@ const Editor = (props) => {
     };
     const getNoteData = async () => {
       try {
-        console.log("props id", props.id);
-        let data = await axios.get(`http://localhost:5000/notes/${props.id}`);
-        setNoteData(data);
-        headerTitle = data.title;
+        if (props.id == "new") {
+          createNewNote();
+        }
+        else {
+          let data = await axios.get(`http://localhost:5000/notes/${props.id}`);
+          setNoteData(data);
+        }
       } catch (err) {
         console.log(err);
       }
     };
+
+    const createNewNote = async () => {
+      axios.post("http://localhost:5000/notes", {
+          title: "new note",
+          description: "new",
+        })
+        .then(function (response) {
+          setNoteData(response);
+        });
+    }
 
     importConstants();
     getNoteData();

@@ -10,30 +10,7 @@ import axios from 'axios';
 
   const Page = () => {
     const router = useRouter()
-    const {id} = router.query
-    useEffect(() => {
-      if (id == "new") {
-        axios.post('http://localhost:5000/notebooks', {name: "new note", description: "new"})
-        .then(function(response) {
-          console.log(response);
-        })
-      }
-      else {
-      axios.get(`http://localhost:5000/notes/${id}`)
-        .then(function (response) {
-          // handle success
-          console.log(response);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        })
-        .then(function () {
-          // always executed
-        });
-      }
-
-    });
+    const { id } = router.query
 
     return (
       <div className="show-fake-browser sidebar-page">
