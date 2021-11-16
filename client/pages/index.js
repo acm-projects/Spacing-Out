@@ -1,12 +1,14 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Form from 'rsuite/Form';
 import Button from 'rsuite/Button';
 import { Navbar, Nav, Dropdown, Row, Modal } from 'rsuite';
 import { Container} from 'rsuite';
 import Link from 'next/Link';
 import 'rsuite/dist/rsuite.min.css';
+import {useRouter} from 'next/router';
+import axios from 'axios';
 
 
 
@@ -18,7 +20,8 @@ import 'rsuite/dist/rsuite.min.css';
       setOpen(true);
     };
     const handleClose = () => setOpen(false);
-
+    const router = useRouter();
+    const {id} = router.query;
     const MyLink = React.forwardRef((props, ref) => {
       const { href, as, ...rest } = props;
       return (
@@ -28,8 +31,10 @@ import 'rsuite/dist/rsuite.min.css';
       );
     });
 
-    const axios = require('axios');
-    
+    useEffect(() => {
+     
+    }); 
+
     return (
     
     <Container>
@@ -44,8 +49,7 @@ import 'rsuite/dist/rsuite.min.css';
             as={MyLink} href="/notes/new">
               Notes
             </Nav.Item>
-            <Nav.Item style={{textDecoration: 'none', color:'white'}}
-            as={MyLink} href="/flashcards/new">
+            <Nav.Item style={{textDecoration: 'none', color:'white'}} href="/flashcards/new">
               Flashcards
               </Nav.Item>
             <Dropdown title="Login" style={{textAlign: 'left', alignItems:'left', textDecoration: 'none', color:'white', fontSize:'2rem', height:'4rem', width: '7rem', fontFamily: 'sans-serif'}}> 

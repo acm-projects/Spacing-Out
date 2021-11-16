@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import 'rsuite/dist/rsuite.min.css';
 import { FlashcardComponent } from 'react-flashcard'
 import SideNavbar from '../../components/SideNavbar';
@@ -7,10 +7,12 @@ import Header from 'rsuite/Header';
 import {useRouter} from 'next/router';
 import ButtonGroup from 'rsuite/ButtonGroup';
 import Button from 'rsuite/Button';
+import axios from 'axios';
 
 const Page = () => {
   const router = useRouter()
   const {id} = router.query
+  
     const cardData = [
         {
           front: {
@@ -42,10 +44,10 @@ const Page = () => {
         <FlashcardComponent dataSource={cardData} />
         <Container>
         <ButtonGroup size="lg"  style={{ marginTop: 24, padding: 24, height: 12 }} justified>
-            <Button color="red" appearance="primary">      </Button>
-            <Button color="orange" appearance="primary">     </Button>
-            <Button color="yellow" appearance="primary">      </Button>
-            <Button color="cyan" appearance="primary">      </Button>
+            <Button color="red" appearance="primary"></Button>
+            <Button color="orange" appearance="primary"></Button>
+            <Button color="yellow" appearance="primary"></Button>
+            <Button color="cyan" appearance="primary"></Button>
             <Button color="green" appearance="primary">      </Button>
         </ButtonGroup>
         </Container>
