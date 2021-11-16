@@ -2,7 +2,7 @@ import Head from 'next/head';
 import 'rsuite/dist/rsuite.min.css';
 import Editor from '../../components/Editor/Editor';
 import SideNavbar from '../../components/SideNavbar';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'rsuite/Container';
 import Header from 'rsuite/Header';
 import {useRouter} from 'next/router';
@@ -41,13 +41,12 @@ import axios from 'axios';
            <SideNavbar/>
           <Container>
             <Header>
-              <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}>{id}</h2>
+              <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}></h2>
             </Header>
-              <Editor
-                onSave={(editorData, title, description) =>
-                onSaveHandler(editorData, title, description)
-                }
-              />
+              {id
+                ? <Editor id={id} />
+                : ""
+              }
           </Container>
         </Container>
       </div>

@@ -6,7 +6,7 @@ GET http://localhost:3000/flashcards/
 
 ###
 
-GET http://localhost:3000/flashcards/6161f0ffed2c17725abded2a
+GET http://localhost:5000/notes/615bb6d6fdad0148c6cf9bb6
 
 ###
 
@@ -16,16 +16,15 @@ POST http://localhost:3000/flashcards
 Content-Type: application/json
 
 {
-    "front": "Testing SM2 due",
-    "back": "Test",
-    "dueDate": "2021-11-01T02:46:10.236Z"
+    "prompt": "Hello prompt",
+    "answer": "Hello answer"
 }
 
 ###
 
 // Delete a flashcard
 
-DELETE http://localhost:3000/flashcards/617339b5eb3e1d6c1082ab5c
+DELETE http://localhost:3000/flashcards/6155132fdd2dd53a70f67ddc
 
 ###
 
@@ -43,20 +42,18 @@ Content-Type: application/json
 
 // Make a flashcard set
 
-POST http://localhost:3000/flashcardsets/
+POST http://localhost:3000/flashcards/set
 Content-Type: application/json 
 
 {
     "name": "Example flashcard set",
     "description": "Example description",
-    "flashcards": [{
-        "_id": "616a5ca4e7dafb2ce094033e"
-    }]
+    "flashcards": ["615523815db03276ecd0bd43"]
 }
 
 ### 
 
-GET http://localhost:3000/flashcardsets/6164ec7a7bf508689cc204b6/flashcards
+GET http://localhost:3000/flashcards/set?id=
 
 ###
 
@@ -68,25 +65,24 @@ GET http://localhost:5000/notes/
 
 // Create a note
 
-POST http://localhost:3000/notes/
+POST http://localhost:5000/notes/
 Content-Type: application/json
 
 {
-    "title": "test title",
-    "body": "test body"
+    "title": "test title"
 }
 
 ###
 
 // Delete a note
 
-DELETE http://localhost:3000/notes/
+DELETE http://localhost:3000/notes/615bb5d9fdad0148c6cf9baa
 
 ###
 
 // Patch a note
 
-PATCH http://localhost:3000/notes/6161f914fe6eca7514b2614c
+PATCH http://localhost:3000/notes/615bb5d9fdad0148c6cf9baa
 Content-Type: application/json
 
 {
@@ -98,7 +94,15 @@ Content-Type: application/json
 
 // Delete note
 
-DELETE http://localhost:3000/notes/6161f914fe6eca7514b2614c
+DELETE http://localhost:3000/notebooks/61786e8e2046fd0d4730379c
+
+###
+
+GET http://localhost:3000/flashcardsets/
+
+###
+
+DELETE http://localhost:3000/flashcardsets/6161ec95cc2c667da4b05605/flashcards/615523815db03276ecd0bd43
 
 ###
 
@@ -121,12 +125,14 @@ Content-Type: application/json
     }]
 }   
 
+###
+
 PATCH http://localhost:3000/notebooks/6164ee2d7bd3f819a562d6be
 Content-Type: application/json
 
 {
-    "name": "the first notebook",
-    "description": "grand new notebook",
+    "name": "the updated notebook",
+    "description": "grand updated notebook",
     "notes": [{
         "_id": "6161f72c0647ea74a0572d5a"
     }]
@@ -134,9 +140,24 @@ Content-Type: application/json
 
 ###        
 GET http://localhost:5000/flashcardsets/
+<<<<<<< HEAD
+=======
 ###
-GET http://localhost:3000/flashcardsets/616a5cafe7dafb2ce0940340
+GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
 ###
+GET http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards
+###
+DELETE http://localhost:3000/flashcardsets/6161eb0fa081f84a4c596d59
+###
+DELETE http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c/flashcards/615523815db03276ecd0bd43
+>>>>>>> main
+###
+PATCH http://localhost:3000/flashcardsets/6161eb2da081f84a4c596d5c
+###
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> main
 POST http://localhost:5000/flashcardsets
 Content-Type: application/json
 
@@ -145,6 +166,16 @@ Content-Type: application/json
     "description": "Used to test integration"
 }
 ###
+<<<<<<< HEAD
+=======
+
+GET http://localhost:5000/flashcardsets
+
+###
+
+GET http://localhost:5000/flashcards/61776c29910bce3e48f8c8d6
+###
+>>>>>>> main
 PATCH http://localhost:5000/flashcardsets/617ee62665f01d2b98406130
 Content-Type: application/json
 
@@ -158,11 +189,47 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:5000/flashcardsets/617ee62665f01d2b98406130/flashcards
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+GET http://localhost:5000/users
+>>>>>>> main
 ###
-DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6
+
+POST http://localhost:5000/users/create
+Content-Type: application/json
+
+{
+    "username": "johnnyjrsr@gmail.com",
+    "password": "john"
+}  
+
+>>>>>>> 7d02ae691cad7bba02daea633d8e7bb49be2ab68
 ###
-DELETE http://localhost:3000/flashcardsets/616a6623a655c3416c8a7bc6/flashcards/
+
+PATCH http://localhost:5000/users/617ee307fb69045ea73727df
+Content-Type: application/json
+
+{
+    "username": "johnnyjr@gmail.com",
+    "password": "john"
+}  
+
 ###
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{
+    "username": "edward@gmail.com",
+    "password": "john"
+}  
+
+
+###
+
+GET http://localhost:5000/users/
+=======
 
 ###
 // Get flashcards in set
@@ -170,6 +237,7 @@ GET http://localhost:3000/flashcardsets/61679a2aa8c2710d70a1920d/flashcards
 
 ###
 
+<<<<<<< HEAD
 
 
 
@@ -203,6 +271,9 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/flashcards/due
+=======
+GET http://localhost:5000/flashcards/due
+>>>>>>> main
 
 ###
 
@@ -210,4 +281,13 @@ GET http://localhost:3000/flashcards/due?date=2021-11-01
 
 ###
 
+<<<<<<< HEAD
 PATCH http://localhost:3000/flashcards/practice/617a0f8d5f3d844a04941506?grade=1
+=======
+<<<<<<< HEAD
+PATCH http://localhost:3000/flashcards/practice/617a0f8d5f3d844a04941506?grade=1
+=======
+PATCH http://localhost:3000/flashcards/practice/617a04df45d7676ff0c91c9b?grade=5
+>>>>>>> main
+>>>>>>> 7d02ae691cad7bba02daea633d8e7bb49be2ab68
+>>>>>>> main

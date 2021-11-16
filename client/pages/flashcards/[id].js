@@ -1,38 +1,49 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import 'rsuite/dist/rsuite.min.css';
-import { FlashcardComponent } from 'react-flashcard'
 import SideNavbar from '../../components/SideNavbar';
 import Container from 'rsuite/Container';
 import Header from 'rsuite/Header';
-import {useRouter} from 'next/router';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { FlashcardComponent } from 'react-flashcard';
 import ButtonGroup from 'rsuite/ButtonGroup';
 import Button from 'rsuite/Button';
 import axios from 'axios';
 
 const Page = () => {
-  const router = useRouter()
-  const {id} = router.query
+  const router = useRouter();
+  const { id } = router.query;
   
-    const cardData = [
-        {
-          front: {
-            text: "living outside, often in a tent",
-            image: "",
-          },
-          back: {
-            text: "Camping",
-          }
-        },
-        {
-          front: {
-            text: "A 1215 document that limited the king's ability to tax English nobles and that guaranteed due process and a right to trial",
-            image: "https://www.gannett-cdn.com/presto/2020/06/12/PCIN/f7da5daa-55ce-4c51-aeaa-92ca3afa7928-engraving-King-John-Magna-Carta-Runnymede-England-June-15-1215.jpg",
-          },
-          back: {
-            text: "Magna Carta",
-          }
-        }
-      ];
+  let [cardData, setCardData] = useState([]);
+
+  useEffect(() => {
+    if(!id){
+      return;
+    }
+    axios.get(`http://localhost:5000/flashcardsets/${id}/flashcards`)
+    .then( (response) => {
+       let tempCardData = response.data.map( (flashcard) => {
+          return (
+            {
+              front: {
+                text: flashcard.front
+              },
+              back: {
+                text: flashcard.back
+              }
+            }
+          );
+        });
+        console.log(tempCardData);
+        setCardData(tempCardData);
+    })
+    .catch( (error) => {
+      console.log(error);
+    })
+    .then( () => {
+
+    });
+  }, [id]);
     return (
     <div className="show-fake-browser sidebar-page">
     <Container>
