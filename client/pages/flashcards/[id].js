@@ -10,7 +10,7 @@ const Page = () => {
   let [cardData, setCardData] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/flashcardsets/${id}/flashcards`)
+    await axios.get(`http://localhost:5000/flashcardsets/${id}/flashcards`)
     .then( (response) => {
        let tempCardData = response.data.map( (flashcard) => {
           return (

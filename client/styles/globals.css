@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.ce-paragraph {
+    font-size: 18px;
+}
