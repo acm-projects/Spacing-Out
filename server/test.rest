@@ -6,7 +6,7 @@ GET http://localhost:3000/flashcards/
 
 ###
 
-GET http://localhost:3000/flashcards/6152be62a36b1a30ac41c34a
+GET http://localhost:5000/notes/615bb6d6fdad0148c6cf9bb6
 
 ###
 
@@ -65,12 +65,11 @@ GET http://localhost:5000/notes/
 
 // Create a note
 
-POST http://localhost:3000/notes/
+POST http://localhost:5000/notes/
 Content-Type: application/json
 
 {
-    "title": "test title",
-    "body": "test body"
+    "title": "test title"
 }
 
 ###
