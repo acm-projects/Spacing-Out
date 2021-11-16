@@ -48,7 +48,21 @@ const Page = () => {
         console.log({
           Term, 
           Def
+        });
+        axios.post('/flashcards', {
+          prompt: Term,
+          answer: Def,
         })
+        .then(function (response) {
+          console.log(response);
+          // let idOfSet = response._id;
+          // axios.post('/flashcardsets/:idOfSet',{
+
+          // })
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
         handleClose(); 
       };
 

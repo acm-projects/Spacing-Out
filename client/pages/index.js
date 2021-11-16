@@ -7,6 +7,7 @@ import Button from 'rsuite/Button';
 import { Navbar, Nav, Dropdown, Content, Sidebar, Grid, Row, Col, Modal, Footer } from 'rsuite';
 import { Container } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
+import axios from 'axios';
 import styles from '../styles/Home.module.css'
 
 
