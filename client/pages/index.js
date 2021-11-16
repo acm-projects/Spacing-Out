@@ -7,7 +7,7 @@ import Button from 'rsuite/Button';
 import { Navbar, Nav, Dropdown, Content, Sidebar, Grid, Row, Col, Modal, Footer } from 'rsuite';
 import { Container } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
-import Home from '@rsuite/icons/Home';
+import styles from '../styles/Home.module.css'
 
 
   export default function LandingPage() {
@@ -22,21 +22,19 @@ import Home from '@rsuite/icons/Home';
     //axios.post('/backend something', {Name: 'name', Email: 'email'} )
       
     return (
-    
     <Container>
-
       <Navbar style={{backgroundColor:'#7660FF', appearance:'subtle', textDecoration: 'none', 
               color:'black', fontSize:'1.15rem', height:'4rem'}}>
-          <Navbar.Brand style={{textDecoration: 'none', color:'white', fontWeight: 'heavy'}} icon={<Home></Home>}>
+          <Navbar.Brand style={{textDecoration: 'none', color:'white', fontWeight: 'heavy'}} >
             HOME
           </Navbar.Brand>
           <Nav pullRight>
-            <Nav.Item style={{textDecoration: 'none', padding: 'none', color:'white'}}>
+            <Nav.Item style={{textDecoration: 'none', padding: 'none', color:'white'} }>
               Notes
             </Nav.Item>
             <Nav.Item style={{textDecoration: 'none', color:'white'}}>Flashcards</Nav.Item>
             <Nav.Item style={{textDecoration: 'none', color:'black'}}> 
-              <Button size="med" onClick={() => handleOpen('xs')}>
+              <Button size="med" onClick={() => handleOpen('xs')} appearance='ghost'>
                 Account
               </Button>
             </Nav.Item>
@@ -77,7 +75,7 @@ import Home from '@rsuite/icons/Home';
           </Modal>
         </Nav>
       </Navbar>
-    
+      
       <Head style={{color: "black"}}>
         <title>Spacing Out</title>
       </Head>
