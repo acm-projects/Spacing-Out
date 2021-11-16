@@ -14,6 +14,8 @@ const Page = () => {
   const { id } = router.query;
   
   let [cardData, setCardData] = useState([]);
+  let [flashcardIDs, getFlashcardIDs] = useState([]);
+
 
   useEffect(() => {
     if(!id){
@@ -33,8 +35,18 @@ const Page = () => {
             }
           );
         });
+       let tempFlashcardIDs = response.data.map( (flashcard) => {
+          return (
+            {
+              _id: {
+                text: flashcard._id
+              }
+            }
+          );
+
         console.log(tempCardData);
         setCardData(tempCardData);
+        getFlashcardIDs(tempFlashcardIDs);
     })
     .catch( (error) => {
       console.log(error);
@@ -43,6 +55,35 @@ const Page = () => {
 
     });
   }, [id]);
+
+    const onClickHandler = (grade) => {
+        // Get patch function for flashcard in flashcard set
+        // Get flashcard by tracking the index of flashcard we are on
+        useEffect(() => {
+          if(!fCardId){
+            return;
+          }
+          axios.patch(`http://localhost:3000/flashcards/practice/${fCardId}?grade=${grade}`)
+          .then( (response) => {
+            let flashcardData = response.data.map( (flashcard) => {
+              return (
+                {
+                  _id: {
+                    text: flashcard._id
+                  }
+                }
+              );
+             console.log(fCardId);
+          })
+          .catch( (error) => {
+            console.log(error);
+          })
+          .then( () => {
+      
+          });
+        }, [fCardId]);
+    }
+
     return (
     <div className="show-fake-browser sidebar-page">
     <Container>
@@ -54,7 +95,7 @@ const Page = () => {
         <FlashcardComponent dataSource={cardData} />
         <Container>
         <ButtonGroup size="lg"  style={{ marginTop: 24, padding: 24, height: 12 }} justified>
-            <Button color="red" appearance="primary">      </Button>
+            <Button onClick = {() => console.log("Ryan Dimararararan") } color="red" appearance="primary">      </Button>
             <Button color="orange" appearance="primary">     </Button>
             <Button color="yellow" appearance="primary">      </Button>
             <Button color="cyan" appearance="primary">      </Button>
