@@ -48,7 +48,7 @@ import axios from "axios";
             as={MyLink} href="/notes/new">
               Notes
             </Nav.Item>
-            <Nav.Item style={{textDecoration: 'none', color:'white'}} href="/flashcards/new">
+            <Nav.Item style={{textDecoration: 'none', color:'white'}} href="/flashcards/due">
               Flashcards
               </Nav.Item>
             <Dropdown title="Login" style={{textAlign: 'left', alignItems:'left', textDecoration: 'none', color:'white', fontSize:'2rem', height:'4rem', width: '7rem', fontFamily: 'sans-serif'}}> 
