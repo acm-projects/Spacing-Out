@@ -41,14 +41,20 @@ router.patch('/:id', getNote, async (req, res) => {
     if (req.body.title != null) {
         res.note.title = req.body.title;
     }
-    if (req.body.body != null) {
-        res.note.body = req.body.body;
+    if (req.body.time != null) {
+        res.note.time = req.body.time;
+    }
+    if (req.body.blocks != null) {
+        res.note.blocks = req.body.blocks;
+    }
+    if (req.body.version != null) {
+        res.note.version = req.body.version;
     }
     if (req.body.wordCount != null) {
         res.note.wordCount = req.body.wordCount;
     }
     res.note.dateUpdated = new Date();
-
+    
     try {
         const updatedNote = await res.note.save();
         res.json(updatedNote);
