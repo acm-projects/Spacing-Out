@@ -167,10 +167,10 @@ const Page = () => {
         </Modal>
         
         <ButtonGroup size="lg"  style={{ marginTop: 24, padding: 24, height: 12 }} justified>
-            <Button onClick = {() => onClickHandler(1) } color="red" appearance="primary">      </Button>
-            <Button onClick = {() => onClickHandler(2) }color="orange" appearance="primary">     </Button>
-            <Button onClick = {() => onClickHandler(3) }color="yellow" appearance="primary">      </Button>
-            <Button onClick = {() => onClickHandler(4) }color="cyan" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(1) } color="violet" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(2) }color="red" appearance="primary">     </Button>
+            <Button onClick = {() => onClickHandler(3) }color="orange" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(4) }color="yellow" appearance="primary">      </Button>
             <Button onClick = {() => onClickHandler(5) }color="green" appearance="primary">      </Button>
         </ButtonGroup>
         </Container>
