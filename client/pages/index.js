@@ -12,30 +12,30 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 
-  export default function LandingPage() {
-    const [open, setOpen] = React.useState(false);
-    const [size, setSize] = React.useState();
-    const handleOpen = value => {
-      setSize(value);
-      setOpen(true);
-    };
-    const handleClose = () => setOpen(false);
-    const router = useRouter();
-    const {id} = router.query;
-    const MyLink = React.forwardRef((props, ref) => {
-      const { href, as, ...rest } = props;
-      return (
-        <Link href={href} as={as}>
-          <a ref={ref} {...rest} />
-        </Link>
-      );
-    });
-
-    useEffect(() => {
-     
-    }); 
-
+export default function LandingPage() {
+  const [open, setOpen] = React.useState(false);
+  const [size, setSize] = React.useState();
+  const handleOpen = value => {
+    setSize(value);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
+  const router = useRouter();
+  const {id} = router.query;
+  const MyLink = React.forwardRef((props, ref) => {
+    const { href, as, ...rest } = props;
     return (
+      <Link href={href} as={as}>
+        <a ref={ref} {...rest} />
+      </Link>
+    );
+  });
+
+  useEffect(() => {
+    
+  }); 
+
+  return (
     <Container>
  
       <Navbar style={{backgroundColor:'#7660FF', appearance:'subtle', textDecoration: 'none', 

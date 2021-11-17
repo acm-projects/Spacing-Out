@@ -8,26 +8,26 @@ import Header from 'rsuite/Header';
 import {useRouter} from 'next/router';
 import axios from 'axios';
 
-  const Page = () => {
-    const router = useRouter()
-    const { id } = router.query
+const Page = () => {
+  const router = useRouter()
+  const { id } = router.query
 
-    return (
-      <div className="show-fake-browser sidebar-page">
+  return (
+    <div className="show-fake-browser sidebar-page">
+      <Container>
+          <SideNavbar/>
         <Container>
-           <SideNavbar/>
-          <Container>
-            <Header>
-              <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}></h2>
-            </Header>
-              {id
-                ? <Editor id={id} />
-                : ""
-              }
-          </Container>
+          <Header>
+            <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}></h2>
+          </Header>
+            {id
+              ? <Editor id={id} />
+              : ""
+            }
         </Container>
-      </div>
-    );
-  };
+      </Container>
+    </div>
+  );
+};
 
-  export default Page
+export default Page

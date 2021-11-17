@@ -80,27 +80,27 @@ const SideNavbar = (props) => {
       </Link>
     );
   });
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-    const [openNewNoteB, setNewNoteB] = React.useState(false);
-    const handleOpenNewNoteB= () => setNewNoteB(true); 
-    const handleCloseNewNoteB= () => setNewNoteB(false);
-    const [newNoteBTitle, setNewNoteBTitle]= React.useState(false);
-    const handleSubmitNewNoteB = async () =>{
-      try{
-        axios.post(`http://localhost:5000/notes`, {"title": openNewNoteB })
-          .then((response) => {
-            window.location.replace("http://localhost:3000/notes/" + response.data._id);
-          });
-      } 
-      catch(error){
-        console.log(error);
-      }
-    };
+  const [openNewNoteB, setNewNoteB] = React.useState(false);
+  const handleOpenNewNoteB= () => setNewNoteB(true); 
+  const handleCloseNewNoteB= () => setNewNoteB(false);
+  const [newNoteBTitle, setNewNoteBTitle]= React.useState(false);
+  const handleSubmitNewNoteB = async () =>{
+    try{
+      axios.post(`http://localhost:5000/notes`, {"title": openNewNoteB })
+        .then((response) => {
+          window.location.replace("http://localhost:3000/notes/" + response.data._id);
+        });
+    } 
+    catch(error){
+      console.log(error);
+    }
+  };
 
-    const [title, setTitle] = React.useState(false);
+  const [title, setTitle] = React.useState(false);
   
   const handleSubmit = async () => {
     console.log("form submitted");
