@@ -95,14 +95,16 @@ const SideNavbar = (props) => {
     };
 
     const [title, setTitle] = React.useState(false);
-    const [firstTerm, setFirstTerm] = React.useState(false);
-    const [firstDef, setFirstDef] = React.useState(false);
-    const handleSubmit = () => {
-      console.log({
-        title, 
-        firstTerm, 
-        firstDef
-      })
+  
+  const handleSubmit = async () => {
+    console.log("form submitted");
+      await axios.post(`http://localhost:5000/flashcardsets`, { "name": title, "description": "" })
+        .then((response) => {
+          console.log(response.data._id);
+          window.location.replace("http://localhost:3000/flashcards/" + response.data._id);
+
+        });
+    
     };
 
 
@@ -183,7 +185,7 @@ return (
                       <Form.Control onChange={(e) => setTitle(e)} name="name" />
                       <Form.HelpText>Required</Form.HelpText>
                     </Form.Group>
-                    <Form.Group controlId="dateRangePicker">
+                    {/* <Form.Group controlId="dateRangePicker">
                       <Form.ControlLabel>
                         Select Spaced Repition Start to End Date:
                       </Form.ControlLabel>
@@ -208,12 +210,12 @@ return (
                         accepter={Textarea}
                         onChange={(e) => setFirstDef(e)}
                       />
-                    </Form.Group>
+                    </Form.Group> */}
                   </Form>
                 </Modal.Body>
                 <Modal.Footer>
                   <Button
-                    onClick={(handleSubmit, handleClose)}
+                    onClick={(handleSubmit)}
                     appearance="primary"
                   >
                     Confirm
