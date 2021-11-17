@@ -29,10 +29,12 @@ const Page = () => {
       const [title, setTitle] = React.useState(false);
       const [term, setTerm] = React.useState(false);
       const [def, setDef] = React.useState(false);
-      // const [image, setImage] = React.useState(false);
+      const [image, setImage] = React.useState(false);
+  const [flashcardIDs, setFlashcardIDs] = React.useState([]);
+        const [flashcardPosition, setFlashcardPosition] = useState(1);
 
       
-      const handleSubmit = () => {
+      const handleSubmit = async () => {
         try {
           console.log("term", term, "def", def);
           axios.post(`http://localhost:5000/flashcards/`, { "front": term, "back": def })
@@ -50,7 +52,27 @@ const Page = () => {
         }
         handleClose();
        
-      };
+  };
+  const updateCardData = (response) => {
+      let tempCardData = response.data.map((flashcard) => {
+        return {
+          front: {
+            text: flashcard.front,
+          },
+          back: {
+            text: flashcard.back,
+          },
+        };
+      });
+      console.log(tempCardData);
+    setCardData(tempCardData);
+    
+    let tempFlashcardIDs = response.data.map((flashcard) => {
+      return flashcard._id;
+    });
+
+    setFlashcardIDs(tempFlashcardIDs);
+    }
 
   
 
@@ -58,33 +80,23 @@ const Page = () => {
     if(!id){
       return;
     }
-    axios.get(`http://localhost:5000/flashcardsets/${id}`)
+    if (id == "due") {
+      axios.get(`http://localhost:5000/flashcards/due`)
+        .then((response) => {
+          updateCardData(response);
+        })
+
+    }
+    else {
+      axios.get(`http://localhost:5000/flashcardsets/${id}`)
       .then((response) => {
         setTitle(response.data.name);
       });
     
     axios.get(`http://localhost:5000/flashcardsets/${id}/flashcards`)
       .then( (response) => {
-      
-       let tempCardData = response.data.map( (flashcard) => {
-          return (
-            {
-              front: {
-                text: flashcard.front
-              },
-              back: {
-                text: flashcard.back
-              }
-            }
-          );
-        });
-      let tempFlashcardIDs = response.data.map((flashcard) => {
-        return flashcard._id;
-      })
-          
-        console.log(tempCardData);
-        setCardData(tempCardData);
-        getFlashcardIDs(tempFlashcardIDs);
+        updateCardData(response);
+
     })
     .catch( (error) => {
       console.log(error);
@@ -92,6 +104,9 @@ const Page = () => {
     .then( () => {
 
     });
+
+    }
+    
   }, [id]);
 
   const onClickHandler = (grade) => {
@@ -118,7 +133,7 @@ const Page = () => {
             <Header>
               <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}>{title}</h2>
             </Header>
-        <FlashcardComponent dataSource={cardData} onChange={(step,size) => getFlashcardPosition(step)} />
+        <FlashcardComponent dataSource={cardData} onChange={(step,size) => setFlashcardPosition(step)} />
         <Container>
         <Button style={{fontSize: '1.25rem', padding: '1.2rem'}} onClick={handleOpen}> {<PlusIcon />} Add Card</Button> 
         <Modal open={open} onClose={handleClose} size="lg">
@@ -135,10 +150,10 @@ const Page = () => {
                             <Form.ControlLabel>Definition</Form.ControlLabel>
                             <Form.Control rows={5} name="textarea"  onChange={(e)=>setDef(e)} />
                     </Form.Group>
-                      {/* <Form.Group controlId="textarea-9">
+                      <Form.Group controlId="textarea-9">
                             <Form.ControlLabel>Image URL</Form.ControlLabel>
                             <Form.Control rows={5} name="textarea"  onChange={(e)=>setImage(e)} />
-                    </Form.Group> */}
+                    </Form.Group>
                         </Form>
                 </Modal.Body>
                 <Modal.Footer>

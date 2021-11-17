@@ -127,7 +127,7 @@ const SideNavbar = (props) => {
       dateRangePicker: [],
       checkPicker: [],
       textarea: '',
-    };    
+    };
     const initFormValue = {
       input:
         "",
