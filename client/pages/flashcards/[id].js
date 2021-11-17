@@ -78,8 +78,13 @@ const Page = () => {
             }
           );
         });
+      let tempFlashcardIDs = response.data.map((flashcard) => {
+        return flashcard._id;
+      })
+          
         console.log(tempCardData);
         setCardData(tempCardData);
+        getFlashcardIDs(tempFlashcardIDs);
     })
     .catch( (error) => {
       console.log(error);
@@ -88,6 +93,23 @@ const Page = () => {
 
     });
   }, [id]);
+
+  const onClickHandler = (grade) => {
+    if (!flashcardIDs[flashcardPosition -1]){
+      return;
+    }
+    axios.patch(`http://localhost:5000/flashcards/practice/${flashcardIDs[flashcardPosition -1]}?grade=${grade}`)
+    .then( (response) => {
+       console.log(response);
+    })
+    .catch( (error) => {
+      console.log(error);
+    })
+    .then( () => {
+
+    });
+    };
+
     return (
     <div className="show-fake-browser sidebar-page">
     <Container>
@@ -96,7 +118,7 @@ const Page = () => {
             <Header>
               <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}>{title}</h2>
             </Header>
-        <FlashcardComponent dataSource={cardData} />
+        <FlashcardComponent dataSource={cardData} onChange={(step,size) => getFlashcardPosition(step)} />
         <Container>
         <Button style={{fontSize: '1.25rem', padding: '1.2rem'}} onClick={handleOpen}> {<PlusIcon />} Add Card</Button> 
         <Modal open={open} onClose={handleClose} size="lg">
@@ -130,11 +152,11 @@ const Page = () => {
         </Modal>
         
         <ButtonGroup size="lg"  style={{ marginTop: 24, padding: 24, height: 12 }} justified>
-            <Button color="red" appearance="primary"></Button>
-            <Button color="orange" appearance="primary"></Button>
-            <Button color="yellow" appearance="primary"></Button>
-            <Button color="cyan" appearance="primary"></Button>
-            <Button color="green" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(1) } color="red" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(2) }color="orange" appearance="primary">     </Button>
+            <Button onClick = {() => onClickHandler(3) }color="yellow" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(4) }color="cyan" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(5) }color="green" appearance="primary">      </Button>
         </ButtonGroup>
         </Container>
       </Container>
