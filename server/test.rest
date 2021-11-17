@@ -2,10 +2,17 @@ POST http://localhost:5000/flashcardsets/
 Content-Type: application/json
 
 {
-    "name": "Chemistry Test 1",
-    "description": "Study material for upcoming chemsitry test."
+    "name": "Math Final",
+    "description": "Study material for upcoming math test."
 }
 
+###
+POST http://localhost:5000/notes/
+Content-Type: application/json
+
+{
+    "title": "Chemistry Chapter 1"
+}
 ###
 
 POST http://localhost:3000/flashcards

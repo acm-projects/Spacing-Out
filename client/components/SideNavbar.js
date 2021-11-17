@@ -19,6 +19,7 @@ import {
     DateRangePicker,
     Input,
   } from 'rsuite';
+import router from 'next/router';
   
   const headerStyles = {
       padding: 18,
@@ -87,11 +88,16 @@ const SideNavbar = (props) => {
     const handleOpenNewNoteB= () => setNewNoteB(true); 
     const handleCloseNewNoteB= () => setNewNoteB(false);
     const [newNoteBTitle, setNewNoteBTitle]= React.useState(false);
-    const handleSubmitNewNoteB = () =>{
-      console.log({
-        newNoteBTitle,
-
-      })
+    const handleSubmitNewNoteB = async () =>{
+      try{
+        axios.post(`http://localhost:5000/notes`, {"title": openNewNoteB })
+          .then((response) => {
+            window.location.replace("http://localhost:3000/notes/" + response.data._id);
+          });
+      } 
+      catch(error){
+        console.log(error);
+      }
     };
 
     const [title, setTitle] = React.useState(false);
@@ -169,7 +175,11 @@ return (
             >
               Chemistry Test 1
             </Dropdown.Item>
-            <Dropdown.Item eventKey="3-2">Math Test 1</Dropdown.Item>
+            <Dropdown.Item 
+              eventKey="3-2"
+              href="/flashcards/6194745de9ac91a09d8bc050"
+
+            >Math Final</Dropdown.Item>
             <Dropdown.Item eventKey="3-7">
               <Button size="lg" onClick={handleOpen}>
                 New Flashcard Set
@@ -234,17 +244,18 @@ return (
             placement="rightStart"
             icon={<StorageIcon />}
           >
-            <Dropdown.Item eventKey="3-1">Chemistry</Dropdown.Item>
-            <Dropdown.Item eventKey="3-2">Math</Dropdown.Item>
-            <Dropdown.Item eventKey="3-3">Economics</Dropdown.Item>
-            <Dropdown.Item eventKey="3-4">Art</Dropdown.Item>
-            <Dropdown.Item eventKey="3-5">English</Dropdown.Item>
-            <Dropdown.Item eventKey="3-6">
-              <Button> {<PlusIcon />} New Note</Button>
+            <Dropdown.Item 
+              eventKey="3-1"
+              href="/notes/61947a3768f501a38e09abbb">
+            Chemistry Chapter 1
             </Dropdown.Item>
-            <Dropdown.Item eventKey="3-7">
+            <Dropdown.Item 
+            eventKey="3-2"
+            href="/notes/61947ba868f501a38e09ac38">
+              Math Chapter 5</Dropdown.Item>
+            <Dropdown.Item eventKey="3-3S">
               <Button size="lg" onClick={handleOpenNewNoteB}>
-                New Notebook
+              {<PlusIcon />} New Note
               </Button>
               <Modal
                 open={openNewNoteB}
@@ -257,7 +268,7 @@ return (
                 <Modal.Body>
                   <Form fluid>
                     <Form.Group>
-                      <Form.ControlLabel>Notebook Name</Form.ControlLabel>
+                      <Form.ControlLabel>Note Name</Form.ControlLabel>
                       <Form.Control
                         onChange={(e) => setNewNoteB(e)}
                         name="name"
