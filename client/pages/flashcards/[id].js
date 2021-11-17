@@ -15,55 +15,57 @@ import {
 } from 'rsuite';
 
 const Page = () => {
-  // const router = useRouter()
-  // // const {id} = router.query
-  // //   const cardData = [
-  // //       {
-  // //         front: {
-  // //           text: "living outside, often in a tent",
-  // //           image: "",
-  // //         },
-  // //         back: {
-  // //           text: "Camping",
-  // //         }
-  // //       },
-  // //       {
-  // //         front: {
-  // //           text: "wanting to sleep and eat ice cream all the time",
-  // //           image: "",
-  // //         },
-  // //         back: {
-  // //           text: "Depression",
-  // //         }
-  // //       }
-  // //     ];
+      const Textarea = React.forwardRef((props, ref) => (
+        <Input {...props} as="textarea" ref={ref} />
+      ));
+      const router = useRouter();
+      const { id } = router.query;
+
+      const [cardData, setCardData] = useState([]);
       const [open, setOpen] = React.useState(false);
       const handleOpen = () => setOpen(true);
       const handleClose = () => setOpen(false);
 
       const [title, setTitle] = React.useState(false);
-      const [Term, setTerm] = React.useState(false);
-      const [Def, setDef] = React.useState(false);
+      const [term, setTerm] = React.useState(false);
+      const [def, setDef] = React.useState(false);
+      // const [image, setImage] = React.useState(false);
+
+      
       const handleSubmit = () => {
-        console.log({
-          Term, 
-          Def
-        })
-        handleClose(); 
+        try {
+          console.log("term", term, "def", def);
+          axios.post(`http://localhost:5000/flashcards/`, { "front": term, "back": def })
+            .then((response) => {
+              console.log(response.data._id);
+              axios.patch(`http://localhost:5000/flashcardsets/${id}/`, { "flashcards": [response.data] })
+                .then(() => {
+                   router.reload(window.location.pathname);
+                })
+
+            });
+        }
+        catch (err) {
+          console.log(err);
+        }
+        handleClose();
+       
       };
 
-  const Textarea = React.forwardRef((props, ref) => <Input {...props} as="textarea" ref={ref} />);
-  const router = useRouter();
-  const { id } = router.query;
   
-  let [cardData, setCardData] = useState([]);
 
   useEffect(() => {
     if(!id){
       return;
     }
+    axios.get(`http://localhost:5000/flashcardsets/${id}`)
+      .then((response) => {
+        setTitle(response.data.name);
+      });
+    
     axios.get(`http://localhost:5000/flashcardsets/${id}/flashcards`)
-    .then( (response) => {
+      .then( (response) => {
+      
        let tempCardData = response.data.map( (flashcard) => {
           return (
             {
@@ -92,7 +94,7 @@ const Page = () => {
       <SideNavbar/>
       <Container>
             <Header>
-              <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}>{id}</h2>
+              <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}>{title}</h2>
             </Header>
         <FlashcardComponent dataSource={cardData} />
         <Container>
@@ -110,7 +112,11 @@ const Page = () => {
                         <Form.Group controlId="textarea-9">
                             <Form.ControlLabel>Definition</Form.ControlLabel>
                             <Form.Control rows={5} name="textarea"  onChange={(e)=>setDef(e)} />
-                        </Form.Group>
+                    </Form.Group>
+                      {/* <Form.Group controlId="textarea-9">
+                            <Form.ControlLabel>Image URL</Form.ControlLabel>
+                            <Form.Control rows={5} name="textarea"  onChange={(e)=>setImage(e)} />
+                    </Form.Group> */}
                         </Form>
                 </Modal.Body>
                 <Modal.Footer>

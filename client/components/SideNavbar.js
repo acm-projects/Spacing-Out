@@ -128,126 +128,158 @@ const SideNavbar = (props) => {
 
     //post request of form values from create new flashcard set
 
-return(
-<Sidebar
-    style={{ display: 'flex', flexDirection: 'column', }}
+return (
+  <Sidebar
+    style={{ display: "flex", flexDirection: "column" }}
     width={expand ? 260 : 56}
     collapsible
-  
-    >
+  >
     <Sidenav.Header>
-        <div style={headerStyles}>
-        
+      <div style={headerStyles}>
         <span style={{ marginLeft: 12 }}> Welcome, Shreya</span>
-        </div>
+      </div>
     </Sidenav.Header>
-    <Sidenav expanded={expand} defaultOpenKeys={['4']} appearance="subtle">
-        <Sidenav.Body>
+    <Sidenav expanded={expand} defaultOpenKeys={["4"]} appearance="subtle">
+      <Sidenav.Body>
         <Nav>
-            <Nav.Item eventKey="1" icon={<Dashboard />} style={{textDecoration: 'none',}} as={MyLink} href="/">
+          <Nav.Item
+            eventKey="1"
+            icon={<Dashboard />}
+            style={{ textDecoration: "none" }}
+            as={MyLink}
+            href="/"
+          >
             Dashboard
-            </Nav.Item>
-            {/* <Nav.Item eventKey="2" icon= {<WaitIcon/>} style={{textDecoration: 'none'}} >
+          </Nav.Item>
+          {/* <Nav.Item eventKey="2" icon= {<WaitIcon/>} style={{textDecoration: 'none'}} >
             Flashcards
             </Nav.Item> */}
-            <Dropdown 
+          <Dropdown
             eventKey="2"
             trigger="hover"
             title="Flashcards"
             placement="rightStart"
-            icon = {<WaitIcon/>}
+            icon={<WaitIcon />}
+          >
+            <Dropdown.Item
+              eventKey="3-1"
+              href="/flashcards/619466895a141360c87e4c2d"
             >
-              <Dropdown.Item eventKey="3-1">Chemistry Test 1</Dropdown.Item>
-              <Dropdown.Item eventKey="3-2">Math Test 1</Dropdown.Item>
-              <Dropdown.Item eventKey="3-7"> 
-                <Button size="lg" onClick={handleOpen}>
+              Chemistry Test 1
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="3-2">Math Test 1</Dropdown.Item>
+            <Dropdown.Item eventKey="3-7">
+              <Button size="lg" onClick={handleOpen}>
                 New Flashcard Set
-                </Button>
-            <Modal open={open} onClose={handleClose} size="lg">
-                    <Modal.Header>
-                        <Modal.Title>Create New Set</Modal.Title>
-                    </Modal.Header>
+              </Button>
+              <Modal open={open} onClose={handleClose} size="lg">
+                <Modal.Header>
+                  <Modal.Title>Create New Set</Modal.Title>
+                </Modal.Header>
                 <Modal.Body>
-                        <Form fluid>
-                        <Form.Group controlId="name-9">
-                            <Form.ControlLabel>Title of Set</Form.ControlLabel>
-                            <Form.Control onChange={(e)=>setTitle(e)} name="name" />
-                            <Form.HelpText>Required</Form.HelpText>
-                        </Form.Group>
-                        <Form.Group controlId="dateRangePicker">
-                        <Form.ControlLabel>Select Spaced Repition Start to End Date:</Form.ControlLabel>
-                        <Form.Control name="dateRangePicker" accepter={DateRangePicker} />
-                        </Form.Group>
+                  <Form fluid>
+                    <Form.Group controlId="name-9">
+                      <Form.ControlLabel>Title of Set</Form.ControlLabel>
+                      <Form.Control onChange={(e) => setTitle(e)} name="name" />
+                      <Form.HelpText>Required</Form.HelpText>
+                    </Form.Group>
+                    <Form.Group controlId="dateRangePicker">
+                      <Form.ControlLabel>
+                        Select Spaced Repition Start to End Date:
+                      </Form.ControlLabel>
+                      <Form.Control
+                        name="dateRangePicker"
+                        accepter={DateRangePicker}
+                      />
+                    </Form.Group>
 
-                        <Form.Group controlId="input">
-                            <Form.ControlLabel>First Term</Form.ControlLabel>
-                            <Form.Control name="input" onChange={(e)=>setFirstTerm(e)} />
-                        </Form.Group>
-                        <Form.Group controlId="textarea-9">
-                            <Form.ControlLabel>Definition</Form.ControlLabel>
-                            <Form.Control rows={5} name="textarea" accepter={Textarea} onChange={(e)=>setFirstDef(e)} />
-                        </Form.Group>
-                        </Form>
+                    <Form.Group controlId="input">
+                      <Form.ControlLabel>First Term</Form.ControlLabel>
+                      <Form.Control
+                        name="input"
+                        onChange={(e) => setFirstTerm(e)}
+                      />
+                    </Form.Group>
+                    <Form.Group controlId="textarea-9">
+                      <Form.ControlLabel>Definition</Form.ControlLabel>
+                      <Form.Control
+                        rows={5}
+                        name="textarea"
+                        accepter={Textarea}
+                        onChange={(e) => setFirstDef(e)}
+                      />
+                    </Form.Group>
+                  </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                        <Button onClick={handleSubmit, handleClose} appearance="primary">
-                        Confirm
-                        </Button>
-                        <Button onClick={handleClose} appearance="subtle">
-                        Cancel
-                        </Button>
+                  <Button
+                    onClick={(handleSubmit, handleClose)}
+                    appearance="primary"
+                  >
+                    Confirm
+                  </Button>
+                  <Button onClick={handleClose} appearance="subtle">
+                    Cancel
+                  </Button>
                 </Modal.Footer>
-        </Modal>
-    </Dropdown.Item>
-            </Dropdown>
-            <Dropdown
+              </Modal>
+            </Dropdown.Item>
+          </Dropdown>
+          <Dropdown
             eventKey="3"
             trigger="hover"
             title="Notebooks"
             placement="rightStart"
-            icon= {<StorageIcon/>}
-            >
-              <Dropdown.Item eventKey="3-1">Chemistry</Dropdown.Item>
-              <Dropdown.Item eventKey="3-2">Math</Dropdown.Item>
-              <Dropdown.Item eventKey="3-3">Economics</Dropdown.Item>
-              <Dropdown.Item eventKey="3-4">Art</Dropdown.Item>
-              <Dropdown.Item eventKey="3-5">English</Dropdown.Item>
-              <Dropdown.Item eventKey="3-6">
-                  <Button> {<PlusIcon />} New Note</Button> 
-                </Dropdown.Item>
-              <Dropdown.Item eventKey="3-7">
-                <Button size="lg" onClick={handleOpenNewNoteB}>
+            icon={<StorageIcon />}
+          >
+            <Dropdown.Item eventKey="3-1">Chemistry</Dropdown.Item>
+            <Dropdown.Item eventKey="3-2">Math</Dropdown.Item>
+            <Dropdown.Item eventKey="3-3">Economics</Dropdown.Item>
+            <Dropdown.Item eventKey="3-4">Art</Dropdown.Item>
+            <Dropdown.Item eventKey="3-5">English</Dropdown.Item>
+            <Dropdown.Item eventKey="3-6">
+              <Button> {<PlusIcon />} New Note</Button>
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="3-7">
+              <Button size="lg" onClick={handleOpenNewNoteB}>
                 New Notebook
-                </Button>
-                <Modal open={openNewNoteB} onClose={handleCloseNewNoteB} size="sm">
-                    <Modal.Header>
-                        <Modal.Title>Create New Notebook</Modal.Title>
-                    </Modal.Header>
+              </Button>
+              <Modal
+                open={openNewNoteB}
+                onClose={handleCloseNewNoteB}
+                size="sm"
+              >
+                <Modal.Header>
+                  <Modal.Title>Create New Notebook</Modal.Title>
+                </Modal.Header>
                 <Modal.Body>
-                        <Form fluid>
-                        <Form.Group>
-                            <Form.ControlLabel>Notebook Name</Form.ControlLabel>
-                            <Form.Control onChange={(e)=>setNewNoteB(e)} name="name" />
-                            <Form.HelpText>Required</Form.HelpText>
-                        </Form.Group>
-                        </Form>
+                  <Form fluid>
+                    <Form.Group>
+                      <Form.ControlLabel>Notebook Name</Form.ControlLabel>
+                      <Form.Control
+                        onChange={(e) => setNewNoteB(e)}
+                        name="name"
+                      />
+                      <Form.HelpText>Required</Form.HelpText>
+                    </Form.Group>
+                  </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                        <Button onClick={handleSubmitNewNoteB} appearance="primary">
-                        Confirm
-                        </Button>
-                        <Button onClick={handleCloseNewNoteB} appearance="subtle">
-                        Cancel
-                        </Button>
+                  <Button onClick={handleSubmitNewNoteB} appearance="primary">
+                    Confirm
+                  </Button>
+                  <Button onClick={handleCloseNewNoteB} appearance="subtle">
+                    Cancel
+                  </Button>
                 </Modal.Footer>
-        </Modal>
+              </Modal>
             </Dropdown.Item>
-            </Dropdown>
-    </Nav>
-    </Sidenav.Body>
+          </Dropdown>
+        </Nav>
+      </Sidenav.Body>
     </Sidenav>
     <NavToggle expand={expand} onChange={() => setExpand(!expand)} />
-    </Sidebar>
+  </Sidebar>
 );
 };
 export default SideNavbar; 
