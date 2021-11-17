@@ -15,6 +15,8 @@ const Page = () => {
   
   let [cardData, setCardData] = useState([]);
   let [flashcardIDs, getFlashcardIDs] = useState([]);
+  let [flashcardPosition, getFlashcardPosition] = useState(1);
+
 
 
   useEffect(() => {
@@ -35,15 +37,10 @@ const Page = () => {
             }
           );
         });
-       let tempFlashcardIDs = response.data.map( (flashcard) => {
-          return (
-            {
-              _id: {
-                text: flashcard._id
-              }
-            }
-          );
-
+      let tempFlashcardIDs = response.data.map((flashcard) => {
+        return flashcard._id;
+      })
+          
         console.log(tempCardData);
         setCardData(tempCardData);
         getFlashcardIDs(tempFlashcardIDs);
@@ -56,33 +53,21 @@ const Page = () => {
     });
   }, [id]);
 
-    const onClickHandler = (grade) => {
-        // Get patch function for flashcard in flashcard set
-        // Get flashcard by tracking the index of flashcard we are on
-        useEffect(() => {
-          if(!fCardId){
-            return;
-          }
-          axios.patch(`http://localhost:3000/flashcards/practice/${fCardId}?grade=${grade}`)
-          .then( (response) => {
-            let flashcardData = response.data.map( (flashcard) => {
-              return (
-                {
-                  _id: {
-                    text: flashcard._id
-                  }
-                }
-              );
-             console.log(fCardId);
-          })
-          .catch( (error) => {
-            console.log(error);
-          })
-          .then( () => {
-      
-          });
-        }, [fCardId]);
+  const onClickHandler = (grade) => {
+    if (!flashcardIDs[flashcardPosition -1]){
+      return;
     }
+    axios.patch(`http://localhost:5000/flashcards/practice/${flashcardIDs[flashcardPosition -1]}?grade=${grade}`)
+    .then( (response) => {
+       console.log(response);
+    })
+    .catch( (error) => {
+      console.log(error);
+    })
+    .then( () => {
+
+    });
+    };
 
     return (
     <div className="show-fake-browser sidebar-page">
@@ -92,14 +77,14 @@ const Page = () => {
             <Header>
               <h2 style={{marginLeft: '4rem', marginTop: '2rem'}}>{id}</h2>
             </Header>
-        <FlashcardComponent dataSource={cardData} />
+        <FlashcardComponent dataSource={cardData} onChange={(step,size) => getFlashcardPosition(step)} />
         <Container>
         <ButtonGroup size="lg"  style={{ marginTop: 24, padding: 24, height: 12 }} justified>
-            <Button onClick = {() => console.log("Ryan Dimararararan") } color="red" appearance="primary">      </Button>
-            <Button color="orange" appearance="primary">     </Button>
-            <Button color="yellow" appearance="primary">      </Button>
-            <Button color="cyan" appearance="primary">      </Button>
-            <Button color="green" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(1) } color="red" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(2) }color="orange" appearance="primary">     </Button>
+            <Button onClick = {() => onClickHandler(3) }color="yellow" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(4) }color="cyan" appearance="primary">      </Button>
+            <Button onClick = {() => onClickHandler(5) }color="green" appearance="primary">      </Button>
         </ButtonGroup>
         </Container>
       </Container>
